@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ed9e3214-5447-469c-9a9c-39b48316ca13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/AboutMe/Background.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/AboutMe/Background.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/AboutMe/Drumline.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/AboutMe/Drumline.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/AboutMe/Scroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/AboutMe/Scroll.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/experience/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/experience/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Landing/Buttons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Landing/Buttons.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Landing/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Landing/Main.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/projects/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/projects/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +105,8 @@
       <workItem from="1760584021239" duration="4946000" />
       <workItem from="1760671370882" duration="36180000" />
       <workItem from="1760995260669" duration="4198000" />
+      <workItem from="1762059886976" duration="119000" />
+      <workItem from="1764083818078" duration="2900000" />
     </task>
     <servers />
   </component>

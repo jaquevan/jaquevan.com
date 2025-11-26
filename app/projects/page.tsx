@@ -6,6 +6,11 @@ import projects from "../components/Projects/projects";
 import styled from "styled-components";
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Import case study images
 import LC from '@/public/LC-thumb.png';
@@ -44,17 +49,11 @@ const CaseStudyCard = styled.div`
     overflow: hidden;
     margin-bottom: 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     width: 100%;
     aspect-ratio: 16 / 9;
     background-size: cover;
     background-position: center;
-
-    &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.4);
-    }
 
     &:hover .tooltip {
         opacity: 1;
@@ -126,15 +125,9 @@ const FrontendCard = styled.div`
     overflow: hidden;
     background: white;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
-
-    &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-    }
 `;
 
 interface ImageContainerProps {
@@ -273,6 +266,95 @@ const caseStudies = [
 ];
 
 export default function Projects() {
+    const caseStudyRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const frontendCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+        // Cursor-following animation for case study cards - more subtle
+        caseStudyRefs.current.forEach((card) => {
+            if (!card) return;
+
+            const handleMouseMove = (e: MouseEvent) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                gsap.to(card, {
+                    duration: 0.4,
+                    x: x * 0.02,
+                    y: y * 0.02,
+                    rotationY: x * 0.015,
+                    rotationX: -y * 0.015,
+                    transformPerspective: 1000,
+                    ease: "power2.out",
+                    boxShadow: "0 8px 16px rgba(0,0,0,0.12)"
+                });
+            };
+
+            const handleMouseLeave = () => {
+                gsap.to(card, {
+                    duration: 0.5,
+                    x: 0,
+                    y: 0,
+                    rotationY: 0,
+                    rotationX: 0,
+                    ease: "power2.out",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.08)"
+                });
+            };
+
+            card.addEventListener('mousemove', handleMouseMove);
+            card.addEventListener('mouseleave', handleMouseLeave);
+
+            return () => {
+                card.removeEventListener('mousemove', handleMouseMove);
+                card.removeEventListener('mouseleave', handleMouseLeave);
+            };
+        });
+
+        // Cursor-following animation for frontend cards - very subtle
+        frontendCardRefs.current.forEach((card) => {
+            if (!card) return;
+
+            const handleMouseMove = (e: MouseEvent) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                gsap.to(card, {
+                    duration: 0.4,
+                    x: x * 0.015,
+                    y: y * 0.015,
+                    rotationY: x * 0.01,
+                    rotationX: -y * 0.01,
+                    transformPerspective: 1000,
+                    ease: "power2.out",
+                    boxShadow: "0 8px 16px rgba(0,0,0,0.1)"
+                });
+            };
+
+            const handleMouseLeave = () => {
+                gsap.to(card, {
+                    duration: 0.5,
+                    x: 0,
+                    y: 0,
+                    rotationY: 0,
+                    rotationX: 0,
+                    ease: "power2.out",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.08)"
+                });
+            };
+
+            card.addEventListener('mousemove', handleMouseMove);
+            card.addEventListener('mouseleave', handleMouseLeave);
+
+            return () => {
+                card.removeEventListener('mousemove', handleMouseMove);
+                card.removeEventListener('mouseleave', handleMouseLeave);
+            };
+        });
+    }, []);
+
     return (
         <>
             <NavWrapper>
@@ -283,10 +365,13 @@ export default function Projects() {
 
                 <CaseStudiesSection>
                     <Grid container spacing={3}>
-                        {caseStudies.map((study) => (
+                        {caseStudies.map((study, index) => (
                             <Grid item xs={12} sm={6} md={6} key={study.id}>
                                 <Link href={study.link} style={{ textDecoration: 'none' }}>
-                                    <CaseStudyCard style={{ backgroundImage: `url(${study.image.src})` }}>
+                                    <CaseStudyCard
+                                        ref={(el) => { caseStudyRefs.current[index] = el; }}
+                                        style={{ backgroundImage: `url(${study.image.src})` }}
+                                    >
                                         <Tooltip className="tooltip">{study.summary}</Tooltip>
                                     </CaseStudyCard>
                                 </Link>
@@ -298,9 +383,9 @@ export default function Projects() {
                 <FrontendSection>
                     <Title>Frontend Projects</Title>
                     <Grid container spacing={3}>
-                        {projects.map((project) => (
+                        {projects.map((project, index) => (
                             <Grid item xs={12} sm={6} md={4} key={project.id}>
-                                <FrontendCard>
+                                <FrontendCard ref={(el) => { frontendCardRefs.current[index] = el; }}>
                                     <FrontendImageContainer $hasImage={Boolean(project.image)}>
                                         {project.hackathonWinner && (
                                             <WinnerBadge>{project.hackathonWinner}</WinnerBadge>

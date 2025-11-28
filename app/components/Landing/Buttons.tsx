@@ -427,30 +427,30 @@ export default function EnhancedButtons() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             const timeline = gsap.timeline({
-                defaults: { ease: "power1.out" }
+                defaults: { ease: "power2.out" }
             });
 
-            // Simple fade-in animations
+            // Snappy text animations
             timeline.fromTo(nameRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1 },
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.4 },
                 0
             );
 
             timeline.fromTo(subTextRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1 },
-                0.15
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, duration: 0.3 },
+                0.1
             );
 
-            // Fade in buttons with subtle stagger
+            // Quick button animations with stagger
             buttonRefs.current.forEach((button, index) => {
                 if (!button) return;
 
                 timeline.fromTo(button,
-                    { opacity: 0 },
-                    { opacity: 1, duration: 0.8 },
-                    0.3 + (index * 0.1)
+                    { opacity: 0, scale: 0.9 },
+                    { opacity: 1, scale: 1, duration: 0.3 },
+                    0.25 + (index * 0.05)
                 );
             });
         });

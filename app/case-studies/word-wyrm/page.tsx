@@ -58,6 +58,38 @@ const Container = styled.main`
     ${commonTextStyles}
 `;
 
+const PrototypeButton = styled.a`
+    display: inline-block;
+    margin: 2rem auto 3rem;
+    padding: 1rem 2.5rem;
+    background: var(--text-primary, #333);
+    color: var(--background, white);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        opacity: 0.9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        background: var(--text-primary, #e0e0e0);
+        color: var(--background, #121212);
+    }
+`;
+
+const ButtonWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+`;
+
 const HeroImage = styled.div`
     display: flex;
     flex-direction: column;
@@ -339,7 +371,7 @@ const TitleWrapper: React.FC<TitleWrapperProps> = ({ children }) => {
     );
 };
 
-export default function WordWyrm() {
+export default function LearnWyrm() {
     return (
         <>
             <Container>
@@ -347,17 +379,27 @@ export default function WordWyrm() {
                 <BackToProjects url="/projects" />
 
                 <HeroImage>
-                    <Image src={gaming} alt="Word Wyrm Gaming Dragon" priority />
-                    <Citation> Mascot, Floopa, Gaming.</Citation>
+                    <Image src={gaming} alt="LearnWyrm Gaming Dragon Mascot" priority />
+                    <Citation>Mascot, Floopa, Gaming.</Citation>
                 </HeroImage>
+
+                <ButtonWrapper>
+                    <PrototypeButton
+                        href="https://word-wyrm.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View Prototype
+                    </PrototypeButton>
+                </ButtonWrapper>
 
                 <Section>
                     <TitleWrapper>Project Overview</TitleWrapper>
                     <CenteredParagraph>
-                        Word Wyrm is an educational gaming platform designed to make language learning
+                        LearnWyrm is an educational gaming platform designed to make learning
                         engaging and effective through gamification and AI-powered instruction. The project
-                        focuses on transforming traditional language learning methods into interactive,
-                        memorable experiences.
+                        focuses on transforming traditional learning methods into interactive,
+                        memorable experiences that work for any subject or skill.
                     </CenteredParagraph>
 
                     <TitleWrapper>Deliverables</TitleWrapper>
@@ -380,9 +422,10 @@ export default function WordWyrm() {
                         </SlideImage>
 
                         <CenteredParagraph>
-                            We began by defining the problem: language learning often relies on worksheets and drills that
+                            We began by defining the problem: traditional learning often relies on worksheets and drills that
                             are boring and passive. Through user interviews and persona development, we uncovered the
-                            importance of intuitive design and the need to balance fun with measurable learning outcomes.
+                            importance of intuitive design and the need to balance fun with measurable learning outcomes
+                            across any subject area.
                         </CenteredParagraph>
 
 
@@ -425,9 +468,10 @@ export default function WordWyrm() {
                         <CenteredPhaseTitle>Phase III: Ideation & Design Sprint</CenteredPhaseTitle>
                         <CenteredParagraph>
                             Using techniques like Crazy 8s brainstorming, we rapidly generated a wide range of solutions.
-                            These sketches helped us explore both playful and practical ideas for gamifying language practice.
+                            These sketches helped us explore both playful and practical ideas for gamifying learning practice.
                             We mapped user journeys to capture teacher and student workflows. This gave us visibility into
-                            key pain points and opportunities where AI-powered gamification could enhance learning experiences.
+                            key pain points and opportunities where AI-powered gamification could enhance learning experiences
+                            across different subjects and learning contexts.
                         </CenteredParagraph>
                         <Grid>
                             <ImageWrapper>
@@ -453,7 +497,7 @@ export default function WordWyrm() {
                     </SlideImage>
                     <TeamDescription>
                         Our interdisciplinary team combines expertise in education technology, game design,
-                        and language learning to create an effective solution.
+                        and learning science to create an effective solution.
                     </TeamDescription>
                 </TeamSection>
 

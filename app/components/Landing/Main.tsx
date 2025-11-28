@@ -4,8 +4,6 @@ import Content from "@/app/components/Landing/Content";
 import Buttons from "@/app/components/Landing/Buttons";
 import GithubStatus from "@/app/components/Landing/GithubStatus";
 import ResumeCard from "@/app/components/Landing/ResumeCard";
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
 
 const fadeIn = keyframes`
     from {
@@ -302,72 +300,25 @@ const CityWrapper = styled.div`
 `;
 
 export default function Main() {
-    const buttonsRef = useRef<HTMLDivElement>(null);
-    const resumeRef = useRef<HTMLDivElement>(null);
-    const statusRef = useRef<HTMLDivElement>(null);
-    const mobileStatusRef = useRef<HTMLDivElement>(null);
-    const cityRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            const timeline = gsap.timeline({
-                defaults: { ease: "power1.out" }
-            });
-
-            // Fade in main content area smoothly
-            timeline.fromTo(buttonsRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1.2 },
-                0
-            );
-
-            timeline.fromTo(statusRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1.2 },
-                0.15
-            );
-
-            timeline.fromTo(mobileStatusRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1 },
-                0.2
-            );
-
-            timeline.fromTo(resumeRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1 },
-                0.25
-            );
-
-            timeline.fromTo(cityRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1.4 },
-                0.4
-            );
-        });
-
-        return () => ctx.revert();
-    }, []);
-
     return (
         <StyledBody>
             <MainSection>
                 <MainContentArea>
                     <TopContainer>
-                        <ButtonDiv ref={buttonsRef}>
+                        <ButtonDiv>
                             <Buttons />
-                            <ResumeSection ref={resumeRef}>
+                            <ResumeSection>
                                 <ResumeCard />
                             </ResumeSection>
-                            <MobileStatusContainer ref={mobileStatusRef}>
+                            <MobileStatusContainer>
                                 <GithubStatus />
                             </MobileStatusContainer>
                         </ButtonDiv>
-                        <StatusContainer ref={statusRef}>
+                        <StatusContainer>
                             <GithubStatus />
                         </StatusContainer>
                     </TopContainer>
-                    <CityWrapper ref={cityRef}>
+                    <CityWrapper>
                         <Content />
                     </CityWrapper>
                 </MainContentArea>

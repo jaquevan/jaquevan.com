@@ -120,6 +120,11 @@ const FrontendSection = styled.section`
     margin: 4rem 0;
 `;
 
+// Project Management Section
+const ProjectManagementSection = styled.section`
+    margin: 4rem 0;
+`;
+
 const FrontendCard = styled.div`
     border-radius: 12px;
     overflow: hidden;
@@ -237,10 +242,10 @@ const LinkButton = styled.a<LinkButtonProps>`
 const caseStudies = [
     {
         id: 1,
-        title: 'Word Wyrm',
+        title: 'LearnWyrm',
         image: WordWyrmImage,
         link: '/case-studies/word-wyrm',
-        summary: 'Educational game designed to make vocabulary building engaging and fun for students.'
+        summary: 'Educational gaming platform designed to make learning engaging and effective through gamification and AI-powered instruction.'
     },
     {
         id: 2,
@@ -428,6 +433,33 @@ export default function Projects() {
                         ))}
                     </Grid>
                 </FrontendSection>
+
+                {/* Project Management Section - Currently Hidden */}
+                {/* <ProjectManagementSection>
+                    <Title>Project Management</Title>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Link href="/pm/bu-spark" style={{ textDecoration: 'none' }}>
+                                <FrontendCard>
+                                    <FrontendImageContainer $hasImage={false}>
+                                        <PlaceholderText>BU Spark!</PlaceholderText>
+                                    </FrontendImageContainer>
+                                    <FrontendContent>
+                                        <FrontendTitle>Boston University Spark!</FrontendTitle>
+                                        <FrontendDescription>
+                                            UX design projects for civic tech clients including BlackFacts Redesign and UniteBoston BIRD platform
+                                        </FrontendDescription>
+                                        <ActionContainer>
+                                            <LinkButton $primary href="/pm/bu-spark">
+                                                View Projects
+                                            </LinkButton>
+                                        </ActionContainer>
+                                    </FrontendContent>
+                                </FrontendCard>
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </ProjectManagementSection> */}
             </Container>
         </>
     );

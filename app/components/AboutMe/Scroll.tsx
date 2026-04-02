@@ -1,9 +1,6 @@
 "use client";
 
 import styled from "styled-components";
-import SpotifyEmbed from "@/app/components/AboutMe/Spotify";
-import Gym from "./Gym";
-import Background from "./Background";
 import Drumline from "./Drumline";
 
 const FlexContainer = styled.div`

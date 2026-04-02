@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Terminal from "@/app/components/AboutMe/Terminal";
 import AboutHero from "@/app/components/AboutMe/AboutHero";
 import Background from "@/app/components/AboutMe/Background";
-import Gym from "@/app/components/AboutMe/Gym";
 import Scroll from "@/app/components/AboutMe/Scroll";
 
 const PageWrapper = styled.div`
@@ -85,7 +84,6 @@ export default function Main() {
 
             <ContentSection>
                 <Background />
-                <Gym />
                 <Scroll />
             </ContentSection>
         </PageWrapper>

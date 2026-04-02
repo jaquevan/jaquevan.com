@@ -2,165 +2,108 @@
 
 import styled, { keyframes } from "styled-components";
 
-const fadeIn = keyframes`
-    0% { opacity: 0; transform: scale(0.95) translateY(30px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
+const fadeUp = keyframes`
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 `;
 
-const BackgroundContainer = styled.div`
-    max-width: 1200px;
-    width: 100vw;
-    min-width: 0;
-    margin: 4rem auto;
-    padding: 0 2vw;
-    font-family: 'DM Sans', sans-serif;
-    animation: ${fadeIn} 0.6s cubic-bezier(0.4,0,0.2,1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-
-    @media screen and (max-width: 768px) {
-        width: 100vw;
-        margin: 0 auto;
-        padding: 0 2vw;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-    @media screen and (max-width: 480px) {
-        width: 100vw;
-        margin: 0 auto;
-        padding: 0 2vw;
-        text-align: center;
-    }
-`;
-
-const Title = styled.h1`
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: 2rem;
-    font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
-    text-align: center;
-`;
-
-const CardsGrid = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+const Wrapper = styled.section`
     width: 100%;
-    align-items: center;
-    box-sizing: border-box;
-
-    @media screen and (max-width: 768px) {
-        align-items: center;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    @media screen and (max-width: 480px) {
-        width: 100%;
-        box-sizing: border-box;
-    }
-`;
-
-const Card = styled.div`
-    background: transparent;
-    border-radius: 12px;
-    padding: 1.5rem;
-    border: none;
-    animation: ${fadeIn} 0.7s cubic-bezier(0.4,0,0.2,1);
-    width: 100%;
-    max-width: 600px;
+    max-width: 680px;
     margin: 0 auto;
+    padding: 0 1rem;
     box-sizing: border-box;
+    animation: ${fadeUp} 0.5s ease-out;
+`;
 
-    @media screen and (max-width: 768px) {
-        padding: 1rem;
-        max-width: 98vw;
-        text-align: center;
-        box-sizing: border-box;
-    }
-    @media screen and (max-width: 480px) {
-        padding: 0.7rem;
-        max-width: 98vw;
-        font-size: 0.95rem;
-        box-sizing: border-box;
+const SectionLabel = styled.p`
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+`;
+
+const Row = styled.div`
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
     }
 `;
 
-const SectionTitle = styled.h2`
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
-    margin-bottom: 0.7rem;
+const RowLabel = styled.span`
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+`;
+
+const RowContent = styled.div<{ $emphasis?: boolean }>`
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: ${p => p.$emphasis ? '0.925rem' : '0.875rem'};
+    line-height: 1.7;
+    color: ${p => p.$emphasis ? 'var(--text-primary)' : 'var(--text-secondary)'};
+    font-weight: ${p => p.$emphasis ? '500' : '400'};
+`;
+
+const LocationLine = styled.span`
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
     font-weight: 600;
     color: var(--text-primary);
-    text-align: left;
-
-    @media screen and (max-width: 768px) {
-        text-align: center;
-    }
-    @media screen and (max-width: 480px) {
-        font-size: 1.05rem;
-        text-align: center;
-    }
+    display: block;
+    margin-bottom: 0.15rem;
 `;
 
-const Text = styled.p`
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
-    line-height: 1.7;
-    margin: 0;
+const LocationSub = styled.span`
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
     color: var(--text-secondary);
-    text-align: left;
-
-    @media screen and (max-width: 768px) {
-        text-align: center;
-    }
-    @media screen and (max-width: 480px) {
-        font-size: 0.95rem;
-        text-align: center;
-    }
-`;
-
-const FirstGenCard = styled(Card)`
-    background: transparent;
-    border: none;
-`;
-
-const FirstGenTitle = styled(SectionTitle)`
-    color: var(--text-primary);
-    font-size: clamp(1.25rem, 2vw, 1.6rem);
-    margin-bottom: 1rem;
-`;
-
-const FirstGenText = styled(Text)`
-    font-weight: 500;
-    color: var(--text-primary);
-    font-size: clamp(1.05rem, 1.7vw, 1.15rem);
 `;
 
 export default function Background() {
     return (
-        <BackgroundContainer>
-            <Title>About Me</Title>
-            <CardsGrid>
-                <Card>
-                    <SectionTitle>Location</SectionTitle>
-                    <Text>Boston, MA & Danbury, CT.</Text>
-                </Card>
-                <Card>
-                    <SectionTitle>Cultural Background</SectionTitle>
-                    <Text>
-                        My family is from the Dominican Republic, and I was born and raised in the US. The vibrant culture and community have shaped my values and outlook.
-                    </Text>
-                </Card>
-                <FirstGenCard>
-                    <FirstGenTitle>First Generation College Student</FirstGenTitle>
-                    <FirstGenText>
-                        I will be the first person in my family to graduate college. This is exciting, and I recognize the sacrifices everyone in my family has made for me to get this far in life.
-                    </FirstGenText>
-                </FirstGenCard>
-            </CardsGrid>
-        </BackgroundContainer>
+        <Wrapper>
+            <SectionLabel>about me</SectionLabel>
+
+            <Row>
+                <RowLabel>Based in</RowLabel>
+                <RowContent>
+                    <LocationLine>Boston, MA</LocationLine>
+                    <LocationSub>& Danbury, CT</LocationSub>
+                </RowContent>
+            </Row>
+
+            <Row>
+                <RowLabel>Heritage</RowLabel>
+                <RowContent>
+                    Dominican-American. My family is from the Dominican Republic — that culture
+                    and community have shaped how I think about design, people, and what technology
+                    should be built for.
+                </RowContent>
+            </Row>
+
+            <Row>
+                <RowLabel>First Gen</RowLabel>
+                <RowContent $emphasis>
+                    I will be the first person in my family to graduate college. I don&apos;t take
+                    that lightly — every opportunity I have is a reflection of the sacrifices my
+                    family has made.
+                </RowContent>
+            </Row>
+        </Wrapper>
     );
 }

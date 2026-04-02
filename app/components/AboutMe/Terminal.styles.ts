@@ -1,183 +1,172 @@
-// Terminal.styles.tsx
 import styled, { keyframes } from "styled-components";
+
+export type ThemeColors = {
+    bg: string;
+    headerBg: string;
+    prompt: string;
+    text: string;
+    green: string;
+    error: string;
+    scrollbar: string;
+    border: string;
+    dim: string;
+};
 
 const fadeIn = keyframes`
     from { opacity: 0; }
     to { opacity: 1; }
 `;
 
-export const AsciiArt = styled.pre`
-    font-size: 0.7rem;
-    width: 100%;
-    white-space: pre;
-    line-height: 1.2;
-    margin: 0;
-    color: #9e66ff;
-    font-family: 'Roboto Mono', monospace;
-    animation: ${fadeIn} 0.6s ease-in;
-    overflow-x: auto;
-
-    @media (max-width: 768px) {
-        font-size: 0.6rem;
-        line-height: 1.1;
-    }
-
-    @media (max-width: 480px) {
-        font-size: 0.5rem;
-        line-height: 1.05;
-    }
+const blink = keyframes`
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 `;
 
-export const TerminalContainer = styled.div<{ isFullscreen?: boolean }>`
+export const TerminalContainer = styled.div<{ $theme: ThemeColors }>`
     width: 85%;
-    max-width: 800px;
-    height: 450px;
+    max-width: 820px;
+    height: 460px;
     position: relative;
-    background-color: #1e1e1e;
-    font-family: 'Roboto Mono', monospace;
-    padding: 40px 4% 5% 4%;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', monospace;
     cursor: text;
-    color: white;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    font-size: 0.85rem;
+    border-radius: 12px;
+    font-size: 0.82rem;
     margin: 0 auto;
-    transition: all 0.3s ease-in-out;
-    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
 
-    @media (max-width: 1400px) {
-        width: 90%;
-        max-width: 750px;
-        height: 420px;
-        font-size: 0.82rem;
-    }
+    /* Theme CSS variables for children */
+    --t-bg: ${p => p.$theme.bg};
+    --t-header: ${p => p.$theme.headerBg};
+    --t-prompt: ${p => p.$theme.prompt};
+    --t-text: ${p => p.$theme.text};
+    --t-green: ${p => p.$theme.green};
+    --t-error: ${p => p.$theme.error};
+    --t-scrollbar: ${p => p.$theme.scrollbar};
+    --t-border: ${p => p.$theme.border};
+    --t-dim: ${p => p.$theme.dim};
 
-    @media (max-width: 1200px) {
-        width: 90%;
-        max-width: 700px;
-        height: 400px;
-        font-size: 0.8rem;
-        padding: 38px 3.5% 4.5% 3.5%;
-    }
+    background-color: var(--t-bg);
+    border: 1px solid var(--t-border);
+    color: var(--t-text);
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 
     @media (max-width: 1024px) {
         width: 92%;
-        max-width: 650px;
-        height: 380px;
+        height: 420px;
         font-size: 0.78rem;
     }
 
-    @media (max-width: 900px) {
-        width: 94%;
-        max-width: 600px;
-        height: 350px;
-        font-size: 0.75rem;
-        padding: 36px 3.2% 4.2% 3.2%;
-    }
-
     @media (max-width: 768px) {
-        width: 95%;
-        max-width: 550px;
-        height: 320px;
-        font-size: 0.72rem;
-        padding: 35px 3% 4% 3%;
-    }
-
-    @media (max-width: 640px) {
         width: 96%;
-        max-width: 500px;
-        height: 300px;
-        font-size: 0.7rem;
+        height: 370px;
+        font-size: 0.73rem;
     }
 
     @media (max-width: 480px) {
-        width: 96%;
-        max-width: 100%;
-        height: 280px;
-        font-size: 0.65rem;
-        padding: 32px 2.5% 3% 2.5%;
-        border-radius: 10px;
-    }
-
-    @media (max-width: 380px) {
         width: 98%;
-        height: 260px;
-        font-size: 0.6rem;
-        padding: 30px 2% 2.5% 2%;
+        height: 320px;
+        font-size: 0.67rem;
+        border-radius: 8px;
     }
 `;
 
 export const TerminalHeader = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 30px;
-    background-color: #2d2d2d;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    height: 38px;
+    min-height: 38px;
+    background-color: var(--t-header);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 14px;
+    border-bottom: 1px solid var(--t-border);
+    user-select: none;
 `;
 
-export const HeaderTitle = styled.div`
-    font-size: .8rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-left: 15px;
+export const TrafficDots = styled.div`
     display: flex;
     align-items: center;
-    font-family: 'monospace';
-    font-weight: bold;
-
-    &::before {
-        content: "";
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: #50fa7b;
-        margin-right: 8px;
-        box-shadow: 0 0 4px #50fa7b;
-    }
+    gap: 7px;
 `;
 
-export const ButtonGroup = styled.div`
-    display: flex;
-    gap: 8px;
-`;
-
-export const FullscreenButton = styled.button`
-    width: 22px;
-    height: 22px;
-    background-color: rgba(60, 60, 60, 0.7);
-    border: 1px solid rgba(128, 128, 128, 0.7);
-    color: white;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
+export const TrafficDot = styled.button<{ $color: string; $hoverAction?: boolean }>`
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: ${p => p.$color};
+    border: none;
+    cursor: ${p => p.$hoverAction ? 'pointer' : 'default'};
+    padding: 0;
+    transition: filter 0.15s ease, transform 0.1s ease;
+    flex-shrink: 0;
 
     &:hover {
-        background-color: rgba(130, 241, 49, 0.2);
-        border-color: rgb(130, 241, 49);
-        transform: translateY(-1px);
+        filter: ${p => p.$hoverAction ? 'brightness(1.2)' : 'brightness(0.85)'};
+        transform: ${p => p.$hoverAction ? 'scale(1.1)' : 'none'};
     }
+`;
 
-    &:active {
-        transform: translateY(1px);
+export const HeaderTitle = styled.span<{ $left?: boolean }>`
+    font-size: 0.72rem;
+    color: var(--t-dim);
+    letter-spacing: 0.02em;
+    font-family: inherit;
+    pointer-events: none;
+    ${p => p.$left ? '' : `
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    `}
+`;
+
+export const HeaderActions = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+`;
+
+export const ThemeSwatches = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+`;
+
+export const ThemeSwatch = styled.button<{ $color: string; $active: boolean }>`
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: ${p => p.$color};
+    border: ${p => p.$active ? '2px solid rgba(255,255,255,0.8)' : '2px solid transparent'};
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+        transform: scale(1.25);
+    }
+`;
+
+export const IconButton = styled.button`
+    background: transparent;
+    border: none;
+    color: var(--t-dim);
+    cursor: pointer;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    transition: color 0.15s ease, background 0.15s ease;
+
+    &:hover {
+        color: var(--t-text);
+        background: rgba(255,255,255,0.08);
     }
 
     svg {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
     }
 `;
 
@@ -186,49 +175,48 @@ export const TerminalContent = styled.div`
     flex-direction: column;
     overflow-y: auto;
     flex: 1;
-    margin-top: 8px;
-    padding-right: 4px;
+    padding: 12px 16px 8px;
+    box-sizing: border-box;
 
     &::-webkit-scrollbar {
         width: 4px;
     }
 
     &::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 2px;
+        background: transparent;
     }
 
     &::-webkit-scrollbar-thumb {
-        background: rgba(158, 102, 255, 0.5);
+        background: var(--t-scrollbar);
+        opacity: 0.4;
         border-radius: 2px;
     }
 
-    &::-webkit-scrollbar-thumb:hover {
-        background: rgba(158, 102, 255, 0.8);
-    }
-
     scrollbar-width: thin;
-    scrollbar-color: rgba(158, 102, 255, 0.5) transparent;
+    scrollbar-color: var(--t-scrollbar) transparent;
 `;
 
 export const TerminalLine = styled.div`
     display: flex;
     flex-wrap: wrap;
-    line-height: 1.6;
-    margin: 4px 0;
-    animation: ${fadeIn} 0.3s ease-out;
+    line-height: 1.65;
+    animation: ${fadeIn} 0.2s ease-out;
 `;
 
 export const PromptSpan = styled.span`
-    color: #9e66ff;
-    font-weight: bold;
+    color: var(--t-prompt);
+    font-weight: 600;
     white-space: pre;
+    flex-shrink: 0;
+    transition: color 0.25s ease;
 `;
 
 export const OutputText = styled.span<{ isError?: boolean }>`
     white-space: pre-wrap;
-    color: ${props => props.isError ? '#cccccc' : '#cccccc'};
-    animation: ${fadeIn} 0.4s ease-out;
+    color: ${props => props.isError ? 'var(--t-error)' : 'var(--t-text)'};
+    animation: ${fadeIn} 0.25s ease-out;
+    transition: color 0.25s ease;
+    word-break: break-word;
 `;
 
 export const InputLine = styled.div`
@@ -236,7 +224,6 @@ export const InputLine = styled.div`
     align-items: center;
     width: 100%;
     position: relative;
-    margin: 4px 0;
 `;
 
 export const InputField = styled.input`
@@ -244,20 +231,47 @@ export const InputField = styled.input`
     background-color: transparent;
     border: none;
     outline: none;
-    color: white;
+    color: var(--t-text);
     font-family: inherit;
     font-size: inherit;
     padding: 0;
     margin: 0;
+    caret-color: var(--t-prompt);
+
+    &::selection {
+        background: var(--t-prompt);
+        color: var(--t-bg);
+        opacity: 0.3;
+    }
 `;
 
-export const NotificationBadge = styled.span`
-    background: #50fa7b;
-    color: #282a36;
-    font-size: 10px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    margin-left: 8px;
-    font-weight: bold;
-    animation: ${fadeIn} 0.3s ease;
+export const Cursor = styled.span`
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    background-color: var(--t-prompt);
+    margin-left: 1px;
+    animation: ${blink} 1.1s step-end infinite;
+    vertical-align: text-bottom;
+`;
+
+export const AsciiArt = styled.pre`
+    font-size: 0.72rem;
+    white-space: pre;
+    line-height: 1.3;
+    margin: 2px 0;
+    color: var(--t-prompt);
+    font-family: inherit;
+    animation: ${fadeIn} 0.4s ease-in;
+    overflow-x: auto;
+
+    @media (max-width: 480px) {
+        font-size: 0.58rem;
+    }
+`;
+
+export const CopiedToast = styled.span`
+    font-size: 0.68rem;
+    color: var(--t-green);
+    animation: ${fadeIn} 0.2s ease;
 `;

@@ -1,229 +1,11 @@
 "use client";
 
 import Nav from '@/app/components/NavBar';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Container } from '@mui/material';
-import { Work, LocationOn } from '@mui/icons-material';
 import Image from 'next/image';
 
-const colors = {
-    green: "#00843D",
-    blue: "#003DA5",
-    orange: "#ED8B00",
-    purple: "#8A2BE2",
-    teal: "#008080",
-    lightGray: "#F8F9FA",
-};
-
-const fadeIn = keyframes`
-    from { opacity: 0; }
-    to { opacity: 1; }
-`;
-
-const PageContent = styled.div`
-    width: 100%;
-    min-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 0;
-    animation: ${fadeIn} 0.8s ease;
-`;
-
-const Title = styled.h1`
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin: 1rem 0 0.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    text-align: center;
-
-    @media (max-width: 600px) {
-        font-size: 2rem;
-    }
-`;
-
-const Subtitle = styled.p`
-    font-size: 1.15rem;
-    color: #666;
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-
-    @media (max-width: 600px) {
-        font-size: 1rem;
-        padding: 0 1rem;
-    }
-`;
-
-const SectionTitle = styled.h2`
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin: 2rem 0 1rem;
-    font-family: 'JetBrains Mono', monospace;
-    text-align: center;
-    width: 100%;
-    max-width: 700px;
-    position: relative;
-
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, ${colors.blue}, transparent);
-    }
-
-    @media (max-width: 600px) {
-        font-size: 1.5rem;
-    }
-`;
-
-//card styles
-const ExpCard = styled.div`
-    width: 100%;
-    max-width: 700px;
-    margin: 1.5rem auto;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    background: white;
-
-    &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    @media (max-width: 768px) {
-        width: 90%;
-    }
-`;
-
-const CardHeader = styled.div`
-    background: ${(props) => props.color || colors.green};
-    color: white;
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'JetBrains Mono', monospace;
-
-    @media (max-width: 600px) {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-        padding: 1rem 1.25rem;
-    }
-`;
-
-const JobTitle = styled.div`
-    font-size: 1.1rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-`;
-
-const DateText = styled.span`
-    font-size: 0.9rem;
-    opacity: 0.9;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-`;
-
-const CardBody = styled.div`
-    padding: 1.5rem;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.7;
-    font-size: 0.975rem;
-    color: #333;
-
-    ul {
-        margin: 0.75rem 0;
-        padding-left: 1.5rem;
-
-        li {
-            margin-bottom: 0.5rem;
-            color: #444;
-        }
-    }
-
-    p {
-        margin: 0.75rem 0;
-        color: #444;
-    }
-
-    @media (max-width: 600px) {
-        padding: 1.25rem;
-        font-size: 0.95rem;
-    }
-`;
-
-const InfoItem = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    color: #666;
-    font-size: 0.95rem;
-`;
-
-const Company = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 700;
-    font-size: 1.05rem;
-    margin-bottom: 0.5rem;
-    color: #222;
-`;
-
-const TechStack = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.25rem;
-    padding-top: 1rem;
-    border-top: 1px solid #eee;
-`;
-
-const TechTag = styled.span`
-    background: #f8f9fa;
-    color: #555;
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s ease;
-
-    &:hover {
-        background-color: #e9ecef;
-    }
-`;
-
-// icons
-const TechIcon = ({ name }: { name: string }) => {
-    const iconPath = `/icons/${name.toLowerCase()}.svg`;
-
-    return (
-        <div style={{ width: 16, height: 16, position: 'relative' }}>
-            <Image
-                src={iconPath}
-                alt={`${name} icon`}
-                width={16}
-                height={16}
-                style={{ objectFit: 'contain' }}
-            />
-        </div>
-    );
-};
+/* ── Layout ── */
 
 const NavWrapper = styled.div`
     width: 100%;
@@ -232,173 +14,354 @@ const NavWrapper = styled.div`
     z-index: 1000;
 `;
 
+const PageContent = styled.div`
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3rem 0 5rem;
+
+    @media (max-width: 768px) {
+        padding: 2rem 1rem 4rem;
+    }
+`;
+
+const PageTitle = styled.h1`
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.4rem;
+`;
+
+const PageSubtitle = styled.p`
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin: 0 0 2.5rem;
+`;
+
+const SectionHeading = styled.h2`
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    margin: 3rem 0 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+`;
+
+/* ── Entry ── */
+
+const EntryList = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+`;
+
+const Entry = styled.div<{ $color: string }>`
+    padding: 1.5rem 0 1.5rem 1.25rem;
+    border-left: 2px solid ${p => p.$color};
+    margin-left: 0.25rem;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: -5px;
+        top: 1.75rem;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: ${p => p.$color};
+        flex-shrink: 0;
+    }
+
+    & + & {
+        border-top: none;
+        margin-top: 0;
+    }
+`;
+
+const EntryHeader = styled.div`
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.2rem;
+`;
+
+const Company = styled.span`
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+`;
+
+const DateRange = styled.span`
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
+`;
+
+const Role = styled.div`
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.15rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+`;
+
+const Location = styled.div`
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    margin-bottom: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+`;
+
+const BulletList = styled.ul`
+    margin: 0.5rem 0 0.75rem;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    li {
+        font-size: 0.875rem;
+        line-height: 1.65;
+        color: var(--text-secondary);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+`;
+
+const ShortDesc = styled.p`
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    margin: 0.5rem 0 0.75rem;
+`;
+
+const Tags = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+`;
+
+const Tag = styled.span`
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+`;
+
+const TechIcon = ({ name }: { name: string }) => (
+    <div style={{ width: 13, height: 13, position: 'relative', flexShrink: 0 }}>
+        <Image
+            src={`/icons/${name.toLowerCase()}.svg`}
+            alt={name}
+            width={13}
+            height={13}
+            style={{ objectFit: 'contain' }}
+        />
+    </div>
+);
+
+/* ── Color palette ── */
+const C = {
+    red:    '#CC0000',
+    green:  '#00843D',
+    indigo: '#4338CA',
+    orange: '#ED8B00',
+    blue:   '#003DA5',
+    teal:   '#008080',
+};
+
 export default function ExperiencePage() {
     return (
         <>
-            <NavWrapper>
-                <Nav />
-            </NavWrapper>
+            <NavWrapper><Nav /></NavWrapper>
             <Container>
                 <PageContent>
-                    <Title>Relevant Experience</Title>
-                    <Subtitle>
-                        User-centered designer focused on civic tech, community impact, and accessible digital experiences
-                    </Subtitle>
 
-                    {/* BU Spark UX PM */}
-                    <ExpCard>
-                        <CardHeader color={colors.green}>
-                            <JobTitle>UX Design Project Manager</JobTitle>
-                            <DateText>September 2025 - Present</DateText>
-                        </CardHeader>
-                        <CardBody>
-                            <Company><Work/><span>Boston University Spark!</span></Company>
-                            <InfoItem><LocationOn fontSize="small" /><span>Boston, MA</span></InfoItem>
-                            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
-                                <li>Lead three cross-functional UX research and design teams (12+ members) through agile sprints, managing timelines, deliverables, and usability goals for civic and community-facing clients</li>
-                                <li>Act as liaison between Spark! leadership, clients, and student designers, ensuring alignment across technical feasibility, user outcomes, and client expectations</li>
-                                <li>Provide structured feedback on wireframes, prototypes, and user research while documenting sprint cadence and retrospectives to ensure design decisions evolve from user insights and team collaboration</li>
-                            </ul>
-                            <TechStack>
-                                <TechTag><TechIcon name="figma" />Figma</TechTag>
-                                <TechTag><TechIcon name="slack" />Slack</TechTag>
-                                <TechTag>Notion</TechTag>
-                            </TechStack>
-                        </CardBody>
-                    </ExpCard>
+                    <PageTitle>Experience</PageTitle>
+                    <EntryList>
 
-                    {/* La Colaborativa */}
-                    <ExpCard>
-                        <CardHeader color={colors.orange}>
-                            <JobTitle>UI/UX Design and Web Development Intern</JobTitle>
-                            <DateText>May 2025 - August 2025</DateText>
-                        </CardHeader>
-                        <CardBody>
-                            <Company><Work/><span>La Colaborativa</span></Company>
-                            <InfoItem><LocationOn fontSize="small" /><span>Chelsea, MA</span></InfoItem>
-                            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
-                                <li>Designed and developed the organization&apos;s economic development platform, providing 3000+ community members with up-to-date access to programs and resources</li>
-                                <li>Partnered with 10+ staff members across departments to gather insights on community needs, technology limitations, and budget considerations, translating findings into actionable platform requirements</li>
-                                <li>Developed a Strapi-based CMS using Next.js, TypeScript, Tailwind, Figma, and Vercel empowering non-technical staff to independently maintain and update the organization&apos;s web platform</li>
-                                <li>Created a two-month Digital Equity digital design curriculum in Canva, used in classes of 25+ community members</li>
-                            </ul>
-                            <TechStack>
-                                <TechTag><TechIcon name="ts" />TypeScript</TechTag>
-                                <TechTag><TechIcon name="next" />Next.js</TechTag>
-                                <TechTag><TechIcon name="tw" />Tailwind</TechTag>
-                                <TechTag><TechIcon name="figma" />Figma</TechTag>
-                                <TechTag>Vercel</TechTag>
-                                <TechTag>Strapi</TechTag>
-                                <TechTag>Canva</TechTag>
-                            </TechStack>
-                        </CardBody>
-                    </ExpCard>
+                        <Entry $color={C.red}>
+                            <EntryHeader>
+                                <Company>Red Hat</Company>
+                                <DateRange>May – Aug 2026</DateRange>
+                            </EntryHeader>
+                            <Role>UX Research Intern</Role>
+                            <Location>Raleigh, NC</Location>
+                            <Tags>
+                                <Tag><TechIcon name="figma" />Figma</Tag>
+                                <Tag>UX Research</Tag>
+                            </Tags>
+                        </Entry>
 
-                    {/* BU Spark UX Intern */}
-                    <ExpCard>
-                        <CardHeader color={colors.green}>
-                            <JobTitle>UX Intern - Special Initiatives</JobTitle>
-                            <DateText>January 2025 - Present</DateText>
-                        </CardHeader>
-                        <CardBody>
-                            <Company><Work/><span>Boston University Spark!</span></Company>
-                            <InfoItem><LocationOn fontSize="small" /><span>Boston, MA</span></InfoItem>
-                            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
-                                <li>Designed high-fidelity Figma prototypes and conducted user research for MAPLE Testimony and Boston Voter, two civic tech tools supporting community engagement and legislative transparency; work was selected by Spark! program directors for presentation at department showcase and to Massachusetts legislators</li>
-                                <li>Conducted onboarding interviews with potential clients to understand project goals, technical capacity, and user needs, shaping how Spark! selects and collaborates with partner organizations</li>
-                                <li>Lead client scoping and research for qualified leads, synthesizing findings into clear project proposals and UX research opportunities adopted into Spark!&apos;s active pipeline</li>
-                            </ul>
-                            <TechStack>
-                                <TechTag><TechIcon name="figma" />Figma</TechTag>
-                                <TechTag><TechIcon name="mui" />Material UI</TechTag>
-                                <TechTag><TechIcon name="slack" />Slack</TechTag>
-                                <TechTag><TechIcon name="react" />React</TechTag>
-                            </TechStack>
-                        </CardBody>
-                    </ExpCard>
+                        <Entry $color={C.green}>
+                            <EntryHeader>
+                                <Company>Boston University Spark!</Company>
+                                <DateRange>Sep 2025 – Present</DateRange>
+                            </EntryHeader>
+                            <Role>UX Design Project Manager</Role>
+                            <Location>Boston, MA</Location>
+                            <BulletList>
+                                <li>Lead three cross-functional UX research and design teams (12+ members) through agile sprints</li>
+                                <li>Act as liaison between Spark! leadership, clients, and student designers</li>
+                                <li>Provide structured feedback on wireframes, prototypes, and user research</li>
+                            </BulletList>
+                            <Tags>
+                                <Tag><TechIcon name="figma" />Figma</Tag>
+                                <Tag><TechIcon name="slack" />Slack</Tag>
+                                <Tag>Notion</Tag>
+                            </Tags>
+                        </Entry>
 
-                    {/* Blue Dev Digital */}
-                    <ExpCard>
-                        <CardHeader color={colors.blue}>
-                            <JobTitle>Front-End Developer & UX Researcher</JobTitle>
-                            <DateText>Aug 2024 - Present</DateText>
-                        </CardHeader>
-                        <CardBody>
-                            <Company><Work/><span>Blue Dev Digital</span></Company>
-                            <InfoItem><LocationOn fontSize="small" /><span>Boston, MA</span></InfoItem>
-                            <p>Conducted user research and interviews to guide UX/UI decisions. Developed web applications with React, Next.js, Styled Components, and Tailwind CSS, ensuring responsiveness and branding consistency.</p>
-                            <TechStack>
-                                <TechTag><TechIcon name="react" />React</TechTag>
-                                <TechTag><TechIcon name="vite" />Vite</TechTag>
-                                <TechTag><TechIcon name="next" />Next.js</TechTag>
-                                <TechTag><TechIcon name="mdb" />MongoDB</TechTag>
-                                <TechTag><TechIcon name="figma" />Figma</TechTag>
-                            </TechStack>
-                        </CardBody>
-                    </ExpCard>
+                        <Entry $color={C.indigo}>
+                            <EntryHeader>
+                                <Company>Faculty of Computing &amp; Data Sciences, BU</Company>
+                                <DateRange>Dec 2025 – Present</DateRange>
+                            </EntryHeader>
+                            <Role>Teaching Assistant — XC475</Role>
+                            <Location>Boston, MA · On-site</Location>
+                            <Tags>
+                                <Tag><TechIcon name="react" />React</Tag>
+                                <Tag><TechIcon name="ts" />TypeScript</Tag>
+                                <Tag><TechIcon name="figma" />Figma</Tag>
+                            </Tags>
+                        </Entry>
 
-                    <Title>Volunteer & Other</Title>
+                        <Entry $color={C.orange}>
+                            <EntryHeader>
+                                <Company>La Colaborativa</Company>
+                                <DateRange>May – Aug 2025</DateRange>
+                            </EntryHeader>
+                            <Role>UI/UX Design &amp; Web Development Intern</Role>
+                            <Location>Chelsea, MA</Location>
+                            <BulletList>
+                                <li>Designed and developed the EcoDev platform serving 3000+ community members</li>
+                                <li>Built a Strapi-based CMS with Next.js, TypeScript, and Tailwind empowering non-technical staff</li>
+                                <li>Created a two-month Digital Equity curriculum used in classes of 25+ community members</li>
+                            </BulletList>
+                            <Tags>
+                                <Tag><TechIcon name="ts" />TypeScript</Tag>
+                                <Tag><TechIcon name="next" />Next.js</Tag>
+                                <Tag><TechIcon name="tw" />Tailwind</Tag>
+                                <Tag><TechIcon name="figma" />Figma</Tag>
+                                <Tag>Strapi</Tag>
+                            </Tags>
+                        </Entry>
 
-                    {/* Course Grader */}
-                    <ExpCard>
-                        <CardHeader color={colors.teal}>
-                            <JobTitle>Course Grader - CS411: Software Engineering</JobTitle>
-                            <DateText>August 2025 - Present</DateText>
-                        </CardHeader>
-                        <CardBody>
-                            <Company><Work/><span>Boston University, College of Arts & Sciences</span></Company>
-                            <InfoItem><LocationOn fontSize="small" /><span>Boston, MA</span></InfoItem>
-                            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.25rem' }}>
-                                <li>Mentor 120+ students during weekly office hours on frontend technologies and UX design</li>
-                                <li>Grade group projects with 3,000+ lines of code, providing actionable feedback on scalability, sprint planning, and system design</li>
-                            </ul>
-                            <TechStack>
-                                <TechTag><TechIcon name="react" />React</TechTag>
-                                <TechTag><TechIcon name="js" />JavaScript</TechTag>
-                                <TechTag><TechIcon name="ts" />TypeScript</TechTag>
-                                <TechTag>HTML</TechTag>
-                                <TechTag>CSS</TechTag>
-                            </TechStack>
-                        </CardBody>
-                    </ExpCard>
+                        <Entry $color={C.green}>
+                            <EntryHeader>
+                                <Company>Boston University Spark!</Company>
+                                <DateRange>Jan 2025 – Present</DateRange>
+                            </EntryHeader>
+                            <Role>UX Intern — Special Initiatives</Role>
+                            <Location>Boston, MA</Location>
+                            <BulletList>
+                                <li>Designed Figma prototypes for MAPLE Testimony and Boston Voter — work presented to Massachusetts legislators</li>
+                                <li>Conducted client onboarding interviews shaping how Spark! selects partner organizations</li>
+                                <li>Led client scoping and research synthesized into project proposals adopted into Spark!&apos;s pipeline</li>
+                            </BulletList>
+                            <Tags>
+                                <Tag><TechIcon name="figma" />Figma</Tag>
+                                <Tag><TechIcon name="mui" />Material UI</Tag>
+                                <Tag><TechIcon name="react" />React</Tag>
+                            </Tags>
+                        </Entry>
 
-                    {/* Hack4impact */}
-                    <ExpCard>
-                        <CardHeader color={colors.teal}>
-                            <JobTitle>UI/UX Designer</JobTitle>
-                            <DateText>May 2025 - Present</DateText>
-                        </CardHeader>
-                        <CardBody>
-                            <Company><Work/><span>Hack4Impact Boston University</span></Company>
-                            <InfoItem><LocationOn fontSize="small" /><span>Boston, MA</span></InfoItem>
-                            <p>Redesigning the organization&apos;s website using Figma and Miro to improve navigation, accessibility, and visual consistency for 350+ club members</p>
-                            <TechStack>
-                                <TechTag><TechIcon name="figma" />Figma</TechTag>
-                                <TechTag>Miro</TechTag>
-                                <TechTag><TechIcon name="react" />React</TechTag>
-                                <TechTag><TechIcon name="tw" />Tailwind CSS</TechTag>
-                            </TechStack>
-                        </CardBody>
-                    </ExpCard>
+                        <Entry $color={C.blue}>
+                            <EntryHeader>
+                                <Company>Blue Dev Digital</Company>
+                                <DateRange>Aug 2024 – Present</DateRange>
+                            </EntryHeader>
+                            <Role>Front-End Developer &amp; UX Researcher</Role>
+                            <Location>Boston, MA</Location>
+                            <ShortDesc>
+                                Conducted user research and interviews to guide UX/UI decisions. Developed web applications with React, Next.js, and Tailwind CSS.
+                            </ShortDesc>
+                            <Tags>
+                                <Tag><TechIcon name="react" />React</Tag>
+                                <Tag><TechIcon name="next" />Next.js</Tag>
+                                <Tag><TechIcon name="figma" />Figma</Tag>
+                            </Tags>
+                        </Entry>
 
-                    {/* Our National Conversation */}
-                    <ExpCard>
-                        <CardHeader color={colors.teal}>
-                            <JobTitle>Software Engineer Intern</JobTitle>
-                            <DateText>July 2024 - May 2025</DateText>
-                        </CardHeader>
-                        <CardBody>
-                            <Company><Work/> Our National Conversation</Company>
-                            <InfoItem><LocationOn fontSize="small" /><span>Remote, USA</span></InfoItem>
-                            <p>Worked on front-end features to improve user engagement and accessibility on new sites. Implemented front-end interfaces and integrated back-end logic using React and Python.</p>
-                            <TechStack>
-                                <TechTag><TechIcon name="react" />React</TechTag>
-                                <TechTag><TechIcon name="vite" />Vite</TechTag>
-                                <TechTag><TechIcon name="jest" />Jest</TechTag>
-                                <TechTag><TechIcon name="tw" />Tailwind CSS</TechTag>
-                            </TechStack>
-                        </CardBody>
-                    </ExpCard>
+                    </EntryList>
+
+                    <SectionHeading>Volunteer &amp; Other</SectionHeading>
+
+                    <EntryList>
+
+                        <Entry $color={C.teal}>
+                            <EntryHeader>
+                                <Company>Boston University, College of Arts &amp; Sciences</Company>
+                                <DateRange>Aug 2025 – Present</DateRange>
+                            </EntryHeader>
+                            <Role>Course Grader — CS411: Software Engineering</Role>
+                            <Location>Boston, MA</Location>
+                            <BulletList>
+                                <li>Mentor 120+ students during weekly office hours on frontend and UX design</li>
+                                <li>Grade group projects with 3,000+ lines of code with feedback on scalability and system design</li>
+                            </BulletList>
+                            <Tags>
+                                <Tag><TechIcon name="react" />React</Tag>
+                                <Tag><TechIcon name="ts" />TypeScript</Tag>
+                                <Tag>CSS</Tag>
+                            </Tags>
+                        </Entry>
+
+                        <Entry $color={C.teal}>
+                            <EntryHeader>
+                                <Company>Hack4Impact Boston University</Company>
+                                <DateRange>May 2025 – Present</DateRange>
+                            </EntryHeader>
+                            <Role>UI/UX Designer</Role>
+                            <Location>Boston, MA</Location>
+                            <ShortDesc>
+                                Redesigning the organization&apos;s website to improve navigation, accessibility, and visual consistency for 350+ club members.
+                            </ShortDesc>
+                            <Tags>
+                                <Tag><TechIcon name="figma" />Figma</Tag>
+                                <Tag>Miro</Tag>
+                                <Tag><TechIcon name="tw" />Tailwind CSS</Tag>
+                            </Tags>
+                        </Entry>
+
+                        <Entry $color={C.teal}>
+                            <EntryHeader>
+                                <Company>Our National Conversation</Company>
+                                <DateRange>Jul 2024 – May 2025</DateRange>
+                            </EntryHeader>
+                            <Role>Software Engineer Intern</Role>
+                            <Location>Remote, USA</Location>
+                            <ShortDesc>
+                                Implemented front-end interfaces and improved user engagement and accessibility across new sites using React and Python.
+                            </ShortDesc>
+                            <Tags>
+                                <Tag><TechIcon name="react" />React</Tag>
+                                <Tag><TechIcon name="vite" />Vite</Tag>
+                                <Tag><TechIcon name="tw" />Tailwind CSS</Tag>
+                            </Tags>
+                        </Entry>
+
+                    </EntryList>
+
                 </PageContent>
             </Container>
         </>

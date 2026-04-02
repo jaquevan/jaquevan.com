@@ -12,7 +12,7 @@ export const metadata: Metadata = {
         default: "Evan Jaquez",
         template: "%s | Evan Jaquez"
     },
-    description: "Evan Jaquez (Evan J) is a Computer Science and Economics student at Boston University (BU), specializing in software engineering, frontend development, UI/UX design. Portfolio showcasing projects at La Colaborativa, Boston Voter, MAPLE, and Word Wyrm.",
+    description: "Evan Jaquez (Evan J) is a Computer Science and Economics student at Boston University (BU), specializing in UX research, UI/UX design, and frontend development. Incoming UX Research Intern at Red Hat. Portfolio showcasing projects at La Colaborativa, Boston Voter, MAPLE, and Word Wyrm.",
     keywords: [
         // Name variations
         "Evan Jaquez",
@@ -22,45 +22,44 @@ export const metadata: Metadata = {
         "Evan BU",
         "Evan Jaquez Boston University",
         "Evan J BU",
-        "Evan Jacques BU",
         // Professional titles
-        "Software Engineer",
-        "Frontend Developer",
-        "Full Stack Developer",
-        "UX Designer",
         "UX Researcher",
-        "Web Developer",
+        "UX Designer",
         "UI/UX Designer",
+        "Frontend Developer",
+        "Software Engineer",
+        "Web Developer",
+        // Companies & Internships
+        "Red Hat",
+        "Red Hat UX Research Intern",
+        "Red Hat Intern",
+        "La Colaborativa",
+        "Boston University Spark",
+        "BU Spark",
         // Education
         "Computer Science",
         "Boston University",
         "BU Computer Science",
         "BU Economics",
-        "Economics Student",
         // Technical skills
         "React Developer",
         "Next.js Developer",
         "TypeScript Developer",
-        "JavaScript",
-        "Node.js",
+        "Figma",
         "Tailwind CSS",
         "Strapi CMS",
-        "Python",
-        "Data Science",
-        // Projects & Experience
-        "La Colaborativa",
+        // Projects
         "Boston Voter",
         "MAPLE 3.0",
         "Word Wyrm",
         "Trailblazer Boston Hacks",
-        "Chelsea MA Developer",
-        // Specific expertise
+        // Expertise
         "Civic Tech",
-        "Educational Technology",
         "Digital Equity",
         "Web Accessibility",
-        "Mobile-First Design",
-        "Responsive Design",
+        "User Research",
+        "Usability Testing",
+        "Raleigh NC UX",
         "Portfolio",
         "Hackathon Winner",
         "Boston Hacks 2025"
@@ -76,8 +75,8 @@ export const metadata: Metadata = {
         type: "website",
         locale: "en_US",
         url: "https://jaquevan.com",
-        title: "Evan Jaquez | Boston University",
-        description: "Portfolio of Evan Jaquez (Evan J) - Computer Science and Economics student at Boston University specializing in UI/UX design, frontend development, and civic technology. Projects: La Colaborativa, Boston Voter, MAPLE, Word Wyrm.",
+        title: "Evan Jaquez | UX Researcher & Designer",
+        description: "Portfolio of Evan Jaquez — incoming UX Research Intern at Red Hat, CS & Economics student at Boston University. UX design, frontend development, and civic technology. Projects: La Colaborativa, Boston Voter, MAPLE.",
         siteName: "Evan Jaquez Portfolio",
         images: [
             {
@@ -90,8 +89,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Evan Jaquez - Software Engineer & UX Researcher/Designer @ Boston University",
-        description: "Portfolio of Evan Jaquez - CS & Econ student at BU. Frontend dev, UX designer, civic tech enthusiast.",
+        title: "Evan Jaquez — UX Researcher & Designer, Red Hat Intern",
+        description: "Portfolio of Evan Jaquez — incoming UX Research Intern at Red Hat, CS & Econ student at BU. UX design, frontend dev, civic tech.",
         images: ['/snare_close.png'],
     },
     robots: {
@@ -121,15 +120,15 @@ export default function RootLayout({
         "name": "Evan Jaquez",
         "alternateName": ["Evan J", "Evan Jacques", "Evan Jacquez"],
         "url": "https://jaquevan.com",
-        "jobTitle": ["UX Designer", "Frontend Developer"],
+        "jobTitle": ["UX Researcher", "UX Designer", "Frontend Developer"],
         "worksFor": [
             {
                 "@type": "Organization",
-                "name": "La Colaborativa",
+                "name": "Red Hat",
                 "address": {
                     "@type": "PostalAddress",
-                    "addressLocality": "Chelsea",
-                    "addressRegion": "MA"
+                    "addressLocality": "Raleigh",
+                    "addressRegion": "NC"
                 }
             }
         ],
@@ -138,7 +137,7 @@ export default function RootLayout({
             "name": "Boston University",
             "sameAs": "https://www.bu.edu"
         },
-        "description": "Evan Jaquez (also known as Evan J) is a Computer Science and Economics student at Boston University, specializing in software engineering, frontend development, UI/UX design, and civic technology. Known for work on La Colaborativa, Boston Voter, MAPLE, and Word Wyrm projects.",
+        "description": "Evan Jaquez (also known as Evan J) is a Computer Science and Economics student at Boston University, incoming UX Research Intern at Red Hat, specializing in UX research, UI/UX design, and frontend development. Known for work on La Colaborativa, Boston Voter, and MAPLE projects.",
         "knowsAbout": [
             "Software Engineering",
             "Frontend Development",

@@ -1,4 +1,5 @@
 :root {
+    /* ── Colors ── */
     --background: #ffffff;
     --text-primary: #333333;
     --text-secondary: #666666;
@@ -6,6 +7,23 @@
     --secondary: rebeccapurple;
     --border: #e0e0e0;
     --shadow: rgba(0, 0, 0, 0.1);
+
+    /* ── Fonts ── */
+    /* next/font overrides --font-mono with the actual loaded version at runtime */
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                 'Helvetica Neue', Arial, sans-serif;
+
+    /* ── Type scale ── */
+    --text-2xs:  0.68rem;                          /* labels, eyebrows       */
+    --text-xs:   0.75rem;                          /* tags, badges           */
+    --text-sm:   0.875rem;                         /* body (compact)         */
+    --text-base: 0.95rem;                          /* body (standard), nav   */
+    --text-lg:   1.1rem;                           /* subheadings            */
+    --text-xl:   1.5rem;                           /* section labels (large) */
+    --text-2xl:  2rem;                             /* section headings       */
+    --text-3xl:  clamp(1.8rem, 3vw, 2.2rem);      /* page titles            */
+    --text-hero: clamp(2.5rem, 6vw, 4rem);        /* hero text              */
 }
 
 [data-theme='dark'] {
@@ -19,6 +37,7 @@
 }
 
 body {
+    font-family: var(--font-sans);
     background-color: var(--background);
     color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease;

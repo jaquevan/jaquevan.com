@@ -61,7 +61,7 @@ const MusicContainer = styled.div`
         text-align: center;
         margin-bottom: 2rem;
         font-size: clamp(2rem, 4vw, 2.5rem);
-        font-family: 'JetBrains Mono', monospace;
+        font-family: var(--font-mono);
         font-weight: 700;
     }
 
@@ -83,7 +83,7 @@ const EssenceText = styled.p`
     max-width: 800px;
     padding: 0 2rem;
     color: var(--text-secondary);
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-sans);
     font-style: italic;
 
     @media screen and (max-width: 768px) {

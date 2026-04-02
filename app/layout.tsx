@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
+import { JetBrains_Mono } from "next/font/google";
 import "../app/global.css";
 import ClientThemeProvider from './ClientThemeProvider';
 import StyledComponentsRegistry from '../lib/registry';
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import ThemeMetaTags from './components/ThemeMetaTags';
+
+const jetbrainsMono = JetBrains_Mono({
+    subsets: ['latin'],
+    weight: ['400', '500', '600', '700'],
+    variable: '--font-mono',
+    display: 'swap',
+});
 
 
 export const metadata: Metadata = {
@@ -175,7 +183,7 @@ export default function RootLayout({
     };
 
     return (
-        <html lang="en">
+        <html lang="en" className={jetbrainsMono.variable}>
         <head>
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
             <meta name="apple-mobile-web-app-capable" content="yes" />

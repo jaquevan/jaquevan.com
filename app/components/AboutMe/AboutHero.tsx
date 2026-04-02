@@ -55,15 +55,15 @@ const InfoSection = styled.div`
 
 const Title = styled.h1`
     font-size: clamp(1.5rem, 3vw, 2rem);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-weight: 700;
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
 `;
 
 const Subtitle = styled.h2`
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    font-family: "DM Sans", sans-serif;
+    font-size: var(--text-lg);
+    font-family: var(--font-sans);
     font-weight: 600;
     margin-bottom: 0.5rem;
     color: var(--text-secondary);
@@ -71,8 +71,8 @@ const Subtitle = styled.h2`
 `;
 
 const Minor = styled.h3`
-    font-size: clamp(0.9rem, 1.2vw, 1rem);
-    font-family: "DM Sans", sans-serif;
+    font-size: var(--text-base);
+    font-family: var(--font-sans);
     font-weight: 500;
     margin-bottom: 1.5rem;
     color: var(--text-secondary);

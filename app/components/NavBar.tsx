@@ -133,8 +133,8 @@ const StyledLink = styled(Link)<StyledLinkProps>`
         }
         return props.$isActive ? 'var(--primary)' : 'var(--text-primary)';
     }};
-    font-family: "Arial", "Helvetica", sans-serif;
-    font-size: 0.95rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
     font-weight: ${props => props.$isActive ? '700' : '500'};
     transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -165,12 +165,12 @@ const StyledLink = styled(Link)<StyledLinkProps>`
 
     @media (max-width: 768px) {
         padding: 0.5rem 0.3rem;
-        font-size: 0.85rem;
+        font-size: var(--text-sm);
     }
 
     @media (max-width: 480px) {
         padding: 0.4rem 0.2rem;
-        font-size: 0.75rem;
+        font-size: var(--text-xs);
     }
 `;
 

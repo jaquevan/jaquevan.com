@@ -13,7 +13,7 @@ const BackButton = styled.button`
     gap: 8px;
     padding: 10px 20px;
     margin-bottom: 24px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
     font-weight: 500;
     font-size: 14px;
     background: rgba(255, 255, 255, 0.7);

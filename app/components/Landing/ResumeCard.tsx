@@ -100,7 +100,7 @@ const Title = styled.h3`
     color: #fff;
     margin: 0 0 1rem;
     font-weight: 500;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
 
     @media (max-width: 1024px) {
         font-size: clamp(0.9rem, 2.3vw, 1.05rem);
@@ -134,7 +134,7 @@ const ViewButton = styled(Button)`
         border-radius: 8px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-        font-family: 'JetBrains Mono', monospace;
+        font-family: var(--font-mono);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
         &:hover {

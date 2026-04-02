@@ -19,9 +19,15 @@ const PageContent = styled.div`
     max-width: 680px;
     margin: 0 auto;
     padding: 3rem 0 5rem;
+    box-sizing: border-box;
+    overflow-x: hidden;
 
     @media (max-width: 768px) {
-        padding: 2rem 1rem 4rem;
+        padding: 2rem 1.25rem 4rem;
+    }
+
+    @media (max-width: 480px) {
+        padding: 1.5rem 1rem 3rem;
     }
 `;
 
@@ -66,6 +72,7 @@ const Entry = styled.div<{ $color: string }>`
     border-left: 2px solid ${p => p.$color};
     margin-left: 0.25rem;
     position: relative;
+    overflow: hidden;
 
     &::before {
         content: '';
@@ -89,9 +96,14 @@ const EntryHeader = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.5rem 1rem;
     flex-wrap: wrap;
     margin-bottom: 0.2rem;
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+        gap: 0.15rem;
+    }
 `;
 
 const Company = styled.span`
@@ -99,6 +111,9 @@ const Company = styled.span`
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-primary);
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
 `;
 
 const DateRange = styled.span`
@@ -107,6 +122,11 @@ const DateRange = styled.span`
     color: var(--text-secondary);
     white-space: nowrap;
     flex-shrink: 0;
+
+    @media (max-width: 480px) {
+        white-space: normal;
+        font-size: 0.7rem;
+    }
 `;
 
 const Role = styled.div`
@@ -136,6 +156,8 @@ const BulletList = styled.ul`
         line-height: 1.65;
         color: var(--text-secondary);
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 `;
 

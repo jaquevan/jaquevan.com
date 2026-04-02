@@ -6,20 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ed9e3214-5447-469c-9a9c-39b48316ca13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/AboutMe/AboutHero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/AboutMe/AboutHero.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AboutMe/Gym.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/components/AboutMe/Scroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/AboutMe/Scroll.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/AboutMe/Spotify.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/AboutMe/Spotify.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/Landing/GithubStatus.styles.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/Landing/GithubStatus.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Landing/GithubStatus.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/Landing/ResumeCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Landing/ResumeCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/Projects/BackToProjects.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Projects/BackToProjects.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/contact/Contact.styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/contact/Contact.styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/robots.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/robots.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/sitemap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/sitemap.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +45,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
     &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/jaquevan/WebstormProjects/builder/train-screenshots&quot;,
@@ -114,10 +104,7 @@
       <workItem from="1760583390640" duration="613000" />
       <workItem from="1760584021239" duration="4946000" />
       <workItem from="1760671370882" duration="36180000" />
-      <workItem from="1760995260669" duration="4198000" />
-      <workItem from="1762059886976" duration="119000" />
-      <workItem from="1764083818078" duration="6890000" />
-      <workItem from="1775075962397" duration="4598000" />
+      <workItem from="1760995260669" duration="2908000" />
     </task>
     <servers />
   </component>

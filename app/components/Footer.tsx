@@ -159,7 +159,7 @@ const Tagline = styled(Typography)`
     font-size: 0.95rem;
     margin-bottom: 1.75rem;
     line-height: 1.8;
-    font-family: 'Inter', 'SF Pro Display', -apple-system, sans-serif;
+    font-family: var(--font-sans);
     font-weight: 400;
 
     @media (max-width: 768px) {
@@ -179,7 +179,7 @@ const Tagline = styled(Typography)`
 
 
 const FooterLink = styled(Link)`
-    font-family: 'Inter', 'SF Pro Display', -apple-system, sans-serif;
+    font-family: var(--font-sans);
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;

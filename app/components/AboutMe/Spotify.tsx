@@ -13,7 +13,7 @@ const SpotifyContainer = styled.div`
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 10px 30px var(--shadow);
-    font-family: "DM Sans", sans-serif;
+    font-family: var(--font-sans);
     display: flex;
     flex-direction: column;
     align-items: center;

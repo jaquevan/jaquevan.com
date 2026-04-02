@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FolderIcon from "@mui/icons-material/Folder";
+import { gsap } from 'gsap';
 
 const buttons = [
     {
@@ -419,13 +420,50 @@ const TooltipPath = styled.svg<{ $visible: boolean }>`
 
 export default function EnhancedButtons() {
     const [hoveredButton, setHoveredButton] = React.useState<string | null>(null);
+    const nameRef = useRef<HTMLHeadingElement>(null);
+    const subTextRef = useRef<HTMLHeadingElement>(null);
+    const buttonRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            const timeline = gsap.timeline({
+                defaults: { ease: "power2.out" }
+            });
+
+            // Snappy text animations
+            timeline.fromTo(nameRef.current,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.4 },
+                0
+            );
+
+            timeline.fromTo(subTextRef.current,
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, duration: 0.3 },
+                0.1
+            );
+
+            // Quick button animations with stagger
+            buttonRefs.current.forEach((button, index) => {
+                if (!button) return;
+
+                timeline.fromTo(button,
+                    { opacity: 0, scale: 0.9 },
+                    { opacity: 1, scale: 1, duration: 0.3 },
+                    0.25 + (index * 0.05)
+                );
+            });
+        });
+
+        return () => ctx.revert();
+    }, []);
 
     return (
         <>
-            <Name className="fade-in">Evan Jaquez</Name>
-            <SubText className="fade-in">UX Designer & Researcher</SubText>
-            <ButtonContainer className="fade-in" role="navigation" aria-label="Social links and navigation">
-                {buttons.map((button) => (
+            <Name ref={nameRef}>Evan Jaquez</Name>
+            <SubText ref={subTextRef}>UX Designer & Researcher</SubText>
+            <ButtonContainer role="navigation" aria-label="Social links and navigation">
+                {buttons.map((button, index) => (
                     <TooltipWrapper key={button.id}>
                         <CustomTooltipContent $visible={hoveredButton === button.id}>
                             {button.tooltip}
@@ -437,13 +475,20 @@ export default function EnhancedButtons() {
                             <line x1="0" y1="1" x2="8" y2="1" />
                         </TooltipPath>
                         <ButtonWrapper
+                            ref={(el) => { buttonRefs.current[index] = el; }}
                             onMouseEnter={(e) => {
                                 setHoveredButton(button.id);
                                 if (button.id === "projects") {
                                     const monkey = e.currentTarget.querySelector('img');
                                     if (monkey) {
-                                        (monkey as HTMLElement).style.opacity = '1';
-                                        (monkey as HTMLElement).style.transform = 'translateY(0) scale(1)';
+                                        gsap.to(monkey, {
+                                            opacity: 1,
+                                            y: 0,
+                                            scale: 1,
+                                            rotation: 0,
+                                            duration: 0.4,
+                                            ease: "back.out(1.7)"
+                                        });
                                     }
                                 }
                             }}
@@ -452,8 +497,14 @@ export default function EnhancedButtons() {
                                 if (button.id === "projects") {
                                     const monkey = e.currentTarget.querySelector('img');
                                     if (monkey) {
-                                        (monkey as HTMLElement).style.opacity = '0';
-                                        (monkey as HTMLElement).style.transform = 'translateY(15px) scale(0)';
+                                        gsap.to(monkey, {
+                                            opacity: 0,
+                                            y: 15,
+                                            scale: 0,
+                                            rotation: 45,
+                                            duration: 0.3,
+                                            ease: "power2.in"
+                                        });
                                     }
                                 }
                             }}

@@ -106,8 +106,8 @@ export const InputGroup = styled.div`
 `;
 
 export const Label = styled.label`
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.95rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
     font-weight: 600;
     color: #4b5563;
     margin-bottom: 0.5rem;
@@ -118,8 +118,8 @@ export const TextInput = styled.input`
     padding: 0.9rem 1.1rem;
     border: 2px solid #e5e7eb;
     border-radius: 12px;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
     transition: all 0.2s ease;
     background-color: #f9fafc;
 
@@ -164,8 +164,8 @@ export const Selections = styled(FormGroup)`
         }
 
         .MuiTypography-root {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
+            font-family: var(--font-sans);
+            font-size: var(--text-base);
             color: #4b5563;
         }
     }
@@ -177,8 +177,8 @@ export const MessageInput = styled.textarea`
     padding: 1rem 1.1rem;
     border: 2px solid #e5e7eb;
     border-radius: 12px;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
     resize: vertical;
     transition: all 0.2s ease;
     background-color: #f9fafc;
@@ -198,8 +198,8 @@ export const MessageInput = styled.textarea`
 
 export const SendButton = styled.button`
     padding: 1rem 2.5rem;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
     font-weight: 600;
     color: white;
     background: linear-gradient(135deg, #4361ee, #3a46a7);

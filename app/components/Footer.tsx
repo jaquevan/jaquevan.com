@@ -9,6 +9,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import CodeIcon from '@mui/icons-material/Code';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const fadeIn = keyframes`
     from { opacity: 0; transform: translateY(30px); }
@@ -414,10 +415,12 @@ export default function Footer() {
                 </NavColumn>
 
                 <ImagePlaceholder>
-                    <img
+                    <Image
                         src="/snare_close.png"
                         alt="Snare Drum Closeup"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px', filter: 'grayscale(100%)' }}
+                        fill
+                        sizes="(max-width: 968px) 0px, 340px"
+                        style={{ objectFit: 'cover', borderRadius: '16px', filter: 'grayscale(100%)' }}
                     />
                 </ImagePlaceholder>
             </ContentContainer>

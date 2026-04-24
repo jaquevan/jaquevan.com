@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { CircularProgress } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import CodeIcon from "@mui/icons-material/Code";
@@ -71,17 +72,34 @@ const ProfileLink = styled.a`
     }
 `;
 
-const Avatar = styled.img`
+const AvatarRing = styled.span`
     width: 44px;
     height: 44px;
     border-radius: 50%;
     flex-shrink: 0;
     background: linear-gradient(to right, #00843D, #6cc644);
     padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 
     @media (max-width: 600px) {
         width: 38px;
         height: 38px;
+    }
+`;
+
+const AvatarInner = styled.span`
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    @media (max-width: 600px) {
+        width: 34px;
+        height: 34px;
     }
 `;
 
@@ -129,8 +147,9 @@ const ChartLabel = styled.div`
 const ChartWrap = styled.div`
     width: 100%;
     overflow-x: hidden;
+    position: relative;
 
-    img {
+    .gh-chart-img {
         width: 100%;
         height: auto;
         border-radius: 6px;
@@ -279,10 +298,17 @@ export default function GitHubStatus() {
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <Avatar
-                    src={userProfile?.avatar_url ?? `https://avatars.githubusercontent.com/u/144175083?v=4`}
-                    alt={username}
-                />
+                <AvatarRing>
+                    <AvatarInner>
+                        <Image
+                            src={userProfile?.avatar_url ?? `https://avatars.githubusercontent.com/u/144175083?v=4`}
+                            alt={`${username} GitHub avatar`}
+                            fill
+                            sizes="(max-width: 600px) 34px, 40px"
+                            style={{ objectFit: 'cover' }}
+                        />
+                    </AvatarInner>
+                </AvatarRing>
                 <UserInfo>
                     <Username>{username}</Username>
                     {userProfile?.bio && <Bio>{userProfile.bio}</Bio>}
@@ -299,9 +325,14 @@ export default function GitHubStatus() {
                     Contribution Activity
                 </ChartLabel>
                 <ChartWrap>
-                    <img
+                    {/* unoptimized: ghchart returns an SVG — skip Next.js optimization pipeline */}
+                    <Image
+                        className="gh-chart-img"
                         src={`https://ghchart.rshah.org/00843D/${username}`}
                         alt="GitHub contribution chart"
+                        width={800}
+                        height={160}
+                        unoptimized
                     />
                 </ChartWrap>
             </ChartSection>

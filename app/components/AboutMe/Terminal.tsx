@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 
 import {
     TerminalContainer,
@@ -117,7 +118,7 @@ const PROMPT = 'evan@portfolio ~$ ';
 
 export default function Terminal() {
     const [input, setInput] = useState('');
-    const [theme, setTheme] = useState<ThemeName>('dracula');
+    const [theme, setTheme] = useState<ThemeName>('nord');
     const [history, setHistory] = useState<CommandResult[]>([
         { text: "type 'help' for available commands.", isCommand: false },
     ]);
@@ -140,7 +141,6 @@ export default function Terminal() {
             "  open        open [github|linkedin]\n" +
             "  theme       switch theme [dracula|tokyo|gruvbox|nord|matrix]\n" +
             "  buddy       say hi\n" +
-            "  coffee      fuel\n" +
             "  flip        .\n" +
             "  clear       clear terminal",
 
@@ -252,25 +252,6 @@ export default function Terminal() {
       / \\`,
             ],
             frameDelay: 420,
-        }),
-
-        coffee: () => ({
-            frames: [
-`    ) )
-   ( (
-   ______
-  /      \\
- |  ~~~~  |
-  \\______/`,
-
-`   ( (
-    ) )
-   ______
-  /      \\
- |  ~~~~  |
-  \\______/`,
-            ],
-            frameDelay: 550,
         }),
 
         flip: () => ({
@@ -404,6 +385,9 @@ export default function Terminal() {
                                         />
                                     ))}
                                 </ThemeSwatches>
+                                <IconButton onClick={clearTerminal} title="Clear terminal">
+                                    <ClearAllIcon fontSize="small" />
+                                </IconButton>
                                 <IconButton onClick={copyToClipboard} title="Copy terminal contents">
                                     <ContentCopyIcon fontSize="small" />
                                 </IconButton>
@@ -444,7 +428,7 @@ export default function Terminal() {
                             spellCheck={false}
                             autoComplete="off"
                             autoCorrect="off"
-                            autoCapitalize="off"
+                            autoCapitalize="none"
                         />
                     </InputLine>
                 </TerminalLine>

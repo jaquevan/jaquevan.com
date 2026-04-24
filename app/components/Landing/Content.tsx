@@ -41,53 +41,27 @@ const hop = keyframes`
 const TrackContainer = styled.div`
     position: relative;
     width: 100vw;
-    margin-left: calc(-50vw + 50%); // breaks out of parent container to full viewport width
-    margin-top: -120px; // negative margin pulls cityscape up to create overlap with content above
+    margin-left: calc(-50vw + 50%);
+    margin-top: -120px;
     margin-bottom: 0;
-    padding-bottom: 0; // ensure no padding creates gaps
-    height: clamp(200px, 20vh, 300px); // much smaller vh to eliminate gap
-    background: url(${City.src}) no-repeat center bottom; // anchor city floor to bottom
-    background-size: cover; // makes background fill the container, may crop edges
-    background-position: center bottom; // ensures floor stays at bottom
-    overflow: visible; // allow train to overflow if needed
-    display: block; // block display prevents gap below
-    line-height: 0; // removes line-height gap
-    font-size: 0; // removes font-size gap
-    z-index: 1; // lowest layer - background cityscape
+    padding-bottom: 0;
+    /*
+     * city.png is 2937×532 — aspect ratio ≈ 5.52:1.
+     * background-size: 100% auto scales the image to the full container width
+     * and lets the height follow proportionally, so the top is never cropped.
+     * Height = 100vw × (532/2937) ≈ 18.12vw; we add a small buffer → 19vw.
+     */
+    height: clamp(120px, 19vw, 460px);
+    background: url(${City.src}) no-repeat center bottom;
+    background-size: 100% auto;
+    overflow: visible;
+    display: block;
+    line-height: 0;
+    font-size: 0;
+    z-index: 1;
 
     @media (max-width: 1024px) {
-        margin-top: 0; // remove overlap on tablet/mobile for natural stacking
-        height: clamp(110px, 15vh, 180px); // much smaller for mobile
-        overflow: visible; // show train on mobile
-    }
-
-    @media (max-width: 768px) {
-        height: clamp(100px, 14vh, 160px); // smaller for tablets
-    }
-
-    @media (max-width: 480px) {
-        height: clamp(85px, 12vh, 135px); // smaller for phones
-        min-height: 85px;
-    }
-
-    @media (max-width: 430px) {
-        height: clamp(80px, 11.5vh, 130px); // iPhone 14 Pro Max, iPhone 15 Plus
-        min-height: 80px;
-    }
-
-    @media (max-width: 393px) {
-        height: clamp(75px, 11vh, 125px); // iPhone 16, iPhone 14 Pro
-        min-height: 75px;
-    }
-
-    @media (max-width: 375px) {
-        height: clamp(70px, 10.5vh, 115px); // smaller for small phones
-        min-height: 70px;
-    }
-
-    @media (max-width: 320px) {
-        height: clamp(65px, 10vh, 100px); // smallest for very small screens
-        min-height: 65px;
+        margin-top: 0;
     }
 `;
 

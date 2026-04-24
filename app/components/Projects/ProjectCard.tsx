@@ -170,13 +170,22 @@ const LinkButton = styled.a<LinkButtonProps>`
 `;
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+    const primaryLink = project.liveLink || project.devpost || project.github;
+
+    const handleCardClick = () => {
+        if (primaryLink) window.open(primaryLink, "_blank", "noopener,noreferrer");
+    };
+
     return (
         <CardContainer
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
         >
-            <Card>
+            <Card
+                onClick={handleCardClick}
+                style={{ cursor: primaryLink ? "pointer" : "default" }}
+            >
                 <ImageContainer $hasImage={Boolean(project.image)}>
                     {project.hackathonWinner && (
                         <WinnerBadge>{project.hackathonWinner}</WinnerBadge>
@@ -190,7 +199,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                             priority={true}
                             style={{
                                 objectFit: "cover",
-                                objectPosition: "center top", // Focus on top portion of images
+                                objectPosition: "center top",
                                 transition: "transform 0.5s ease",
                             }}
                             quality={85}
@@ -210,6 +219,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                                 href={project.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                data-cursor-label="View Code"
+                                data-cursor-color="#333333"
+                                onClick={e => e.stopPropagation()}
                             >
                                 <GitHubIcon fontSize="small" />
                                 Code
@@ -221,6 +233,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                                 href={project.devpost}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                data-cursor-label="Devpost"
+                                data-cursor-color="#003E54"
+                                onClick={e => e.stopPropagation()}
                             >
                                 <LaunchIcon fontSize="small" />
                                 Devpost
@@ -233,6 +248,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                                 href={project.liveLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                data-cursor-label="Live Demo"
+                                data-cursor-color="#4361ee"
+                                onClick={e => e.stopPropagation()}
                             >
                                 <LaunchIcon fontSize="small" />
                                 Live Demo

@@ -81,11 +81,16 @@ export default function CaseStudies() {
                 <SectionTitle variant="h1">UX Case Studies</SectionTitle>
 
                 {caseStudies.map((project) => (
-                    <Link key={project.id} href={project.link} style={{ textDecoration: 'none', display: 'block' }}>
+                    <Link
+                        key={project.id}
+                        href={project.link}
+                        style={{ textDecoration: 'none', display: 'block' }}
+                        data-cursor-label={project.title}
+                        data-cursor-color="#00843D"
+                    >
                         <ProjectCard
                             style={{ backgroundImage: `url(${project.image.src})` }}
-                        >
-                        </ProjectCard>
+                        />
                     </Link>
                 ))}
             </Container>

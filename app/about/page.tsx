@@ -11,19 +11,11 @@ const Container = styled.div`
     overflow-x: hidden;
 `;
 
-const NavWrapper = styled.div`
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-`;
 
 export default function Resume() {
     return (
         <Container>
-            <NavWrapper>
-                <NavBar />
-            </NavWrapper>
+            <NavBar />
             <Main/>
         </Container>
     );

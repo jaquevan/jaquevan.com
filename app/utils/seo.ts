@@ -1,5 +1,5 @@
 import { SEOProps } from "../components/Metadata";
-
+import { defaultOgImagePath } from "./site";
 
 export const defaultSEO: SEOProps = {
     title: "Evan Jaquez",
@@ -16,7 +16,7 @@ export const defaultSEO: SEOProps = {
         "front-end developer"
     ],
     ogType: "website",
-    ogImage: "/og-image.jpg"
+    ogImage: defaultOgImagePath,
 };
 
 export const generatePageSEO = (pageSEO: Partial<SEOProps>): SEOProps => ({

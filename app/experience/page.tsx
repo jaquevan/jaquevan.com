@@ -3,94 +3,111 @@
 import Nav from '@/app/components/NavBar';
 import styled from 'styled-components';
 import { Container } from '@mui/material';
+import DescriptionIcon from '@mui/icons-material/Description';
 import Image from 'next/image';
 
 /* ── Layout ── */
-
-const NavWrapper = styled.div`
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-`;
 
 const PageContent = styled.div`
     width: 100%;
     max-width: 680px;
     margin: 0 auto;
-    padding: 3rem 0 5rem;
+    padding: 2.5rem 0 6rem;
     box-sizing: border-box;
     overflow-x: hidden;
 
-    @media (max-width: 768px) {
-        padding: 2rem 1.25rem 4rem;
-    }
+    @media (max-width: 768px) { padding: 2rem 1.25rem 4rem; }
+    @media (max-width: 480px) { padding: 1.5rem 1rem 3rem; }
+`;
 
-    @media (max-width: 480px) {
-        padding: 1.5rem 1rem 3rem;
-    }
+const TitleRow = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0 0 1.5rem;
+    flex-wrap: wrap;
 `;
 
 const PageTitle = styled.h1`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
     font-weight: 700;
     color: var(--text-primary);
-    margin: 0 0 0.4rem;
+    margin: 0;
+    line-height: var(--lh-tight);
 `;
 
-const PageSubtitle = styled.p`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-secondary);
-    margin: 0 0 2.5rem;
+const ResumeButton = styled.a`
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: #fff;
+    background: #00843D;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
+
+    svg {
+        font-size: 1rem;
+    }
+
+    &:hover {
+        background: #007535;
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
 `;
 
 const SectionHeading = styled.h2`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--text-secondary);
-    margin: 3rem 0 1.25rem;
+    margin: 3rem 0 0;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
 `;
 
-/* ── Entry ── */
+/* ── Timeline ── */
 
 const EntryList = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 0;
 `;
 
 const Entry = styled.div<{ $color: string }>`
-    padding: 1.5rem 0 1.5rem 1.25rem;
-    border-left: 2px solid ${p => p.$color};
+    padding: 1.25rem 0 1.25rem 1.5rem;
+    border-left: 2px solid ${p => p.$color}44;
     margin-left: 0.25rem;
     position: relative;
-    overflow: hidden;
 
+    /* Dot */
     &::before {
         content: '';
         position: absolute;
         left: -5px;
-        top: 1.75rem;
+        top: 1.6rem;
         width: 8px;
         height: 8px;
         border-radius: 50%;
         background: ${p => p.$color};
-        flex-shrink: 0;
-    }
-
-    & + & {
-        border-top: none;
-        margin-top: 0;
+        border: 2px solid var(--background);
     }
 `;
+
+/* ── Entry internals ── */
 
 const EntryHeader = styled.div`
     display: flex;
@@ -98,17 +115,17 @@ const EntryHeader = styled.div`
     justify-content: space-between;
     gap: 0.5rem 1rem;
     flex-wrap: wrap;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
 
     @media (max-width: 480px) {
         flex-direction: column;
-        gap: 0.15rem;
+        gap: 0.1rem;
     }
 `;
 
 const Company = styled.span`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.95rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
     font-weight: 700;
     color: var(--text-primary);
     overflow-wrap: break-word;
@@ -117,69 +134,68 @@ const Company = styled.span`
 `;
 
 const DateRange = styled.span`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
     color: var(--text-secondary);
     white-space: nowrap;
     flex-shrink: 0;
 
     @media (max-width: 480px) {
         white-space: normal;
-        font-size: 0.7rem;
     }
 `;
 
 const Role = styled.div`
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     color: var(--text-secondary);
-    margin-bottom: 0.15rem;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    margin-bottom: 0.1rem;
+    font-family: var(--font-sans);
 `;
 
 const Location = styled.div`
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     color: var(--text-secondary);
-    opacity: 0.7;
-    margin-bottom: 0.75rem;
-    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.6;
+    margin-bottom: 0.65rem;
+    font-family: var(--font-mono);
 `;
 
 const BulletList = styled.ul`
-    margin: 0.5rem 0 0.75rem;
-    padding-left: 1.25rem;
+    margin: 0.4rem 0 0.65rem;
+    padding-left: 1.1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.28rem;
 
     li {
-        font-size: 0.875rem;
-        line-height: 1.65;
+        font-size: var(--text-sm);
+        line-height: var(--lh-normal);
         color: var(--text-secondary);
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-family: var(--font-sans);
         overflow-wrap: break-word;
         word-break: break-word;
     }
 `;
 
 const ShortDesc = styled.p`
-    font-size: 0.875rem;
-    line-height: 1.65;
+    font-size: var(--text-sm);
+    line-height: var(--lh-normal);
     color: var(--text-secondary);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    margin: 0.5rem 0 0.75rem;
+    font-family: var(--font-sans);
+    margin: 0.4rem 0 0.65rem;
 `;
 
 const Tags = styled.div`
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.5rem;
+    gap: 0.3rem;
+    margin-top: 0.4rem;
 `;
 
 const Tag = styled.span`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    padding: 0.2rem 0.55rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    padding: 0.18rem 0.5rem;
     border-radius: 4px;
     border: 1px solid var(--border);
     color: var(--text-secondary);
@@ -190,12 +206,12 @@ const Tag = styled.span`
 `;
 
 const TechIcon = ({ name }: { name: string }) => (
-    <div style={{ width: 13, height: 13, position: 'relative', flexShrink: 0 }}>
+    <div style={{ width: 12, height: 12, position: 'relative', flexShrink: 0 }}>
         <Image
             src={`/icons/${name.toLowerCase()}.svg`}
             alt={name}
-            width={13}
-            height={13}
+            width={12}
+            height={12}
             style={{ objectFit: 'contain' }}
         />
     </div>
@@ -214,11 +230,22 @@ const C = {
 export default function ExperiencePage() {
     return (
         <>
-            <NavWrapper><Nav /></NavWrapper>
+            <Nav />
             <Container>
                 <PageContent>
 
-                    <PageTitle>Experience</PageTitle>
+                    <TitleRow>
+                        <PageTitle>Experience</PageTitle>
+                        <ResumeButton
+                            href="/Resume_Jaquez_SP26-3.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <DescriptionIcon />
+                            Resume
+                        </ResumeButton>
+                    </TitleRow>
+
                     <EntryList>
 
                         <Entry $color={C.red}>

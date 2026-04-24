@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import Terminal from "@/app/components/AboutMe/Terminal";
+import GithubStatus from "@/app/components/Landing/GithubStatus";
 import AboutHero from "@/app/components/AboutMe/AboutHero";
 import Background from "@/app/components/AboutMe/Background";
 import Scroll from "@/app/components/AboutMe/Scroll";
@@ -78,7 +78,7 @@ export default function Main() {
             <HeroSection>
                 <AboutHero />
                 <TerminalSection>
-                    <Terminal />
+                    <GithubStatus />
                 </TerminalSection>
             </HeroSection>
 

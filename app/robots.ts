@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { SITE_URL } from '@/app/utils/site'
 
 export const dynamic = "force-static"
 
@@ -11,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: ['/api/', '/private/'],
             },
         ],
-        sitemap: 'https://jaquevan.com/sitemap.xml',
+        sitemap: `${SITE_URL}/sitemap.xml`,
     }
 }

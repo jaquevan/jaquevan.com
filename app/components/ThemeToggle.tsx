@@ -1,9 +1,21 @@
 "use client"
 
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useTheme } from '../contexts/ThemeContext';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+
+const spinOnce = keyframes`
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+`;
+
+const IconWrapper = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+`;
 
 const ToggleButton = styled.button`
     width: 40px;
@@ -17,11 +29,16 @@ const ToggleButton = styled.button`
     border: 2px solid var(--border);
     cursor: pointer;
     z-index: 1000;
+    transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
 
     &:hover {
-        transform: scale(1.05);
+        transform: scale(1.07);
         background: forestgreen;
-        box-shadow: 0 4px 12px var(--shadow-purple);
+        box-shadow: 0 4px 12px rgba(0, 100, 0, 0.25);
+
+        ${IconWrapper} {
+            animation: ${spinOnce} 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
     }
 
     @media (max-width: 768px) {
@@ -33,10 +50,7 @@ const ToggleButton = styled.button`
     @media (max-width: 480px) {
         width: 30px;
         height: 30px;
-
-        &:hover {
-            transform: scale(1.03);
-        }
+        &:hover { transform: scale(1.04); }
     }
 
     @media (max-width: 375px) {
@@ -51,11 +65,13 @@ export default function ThemeToggle() {
 
     return (
         <ToggleButton onClick={toggleTheme} aria-label="Toggle theme" suppressHydrationWarning>
-            {mounted ? (
-                isDarkMode ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />
-            ) : (
-                <DarkModeIcon fontSize="small" />
-            )}
+            <IconWrapper>
+                {mounted ? (
+                    isDarkMode ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />
+                ) : (
+                    <DarkModeIcon fontSize="small" />
+                )}
+            </IconWrapper>
         </ToggleButton>
     );
 }

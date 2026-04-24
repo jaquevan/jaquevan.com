@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { SITE_URL, defaultOgImagePath } from "@/app/utils/site";
 import "../app/global.css";
 import ClientThemeProvider from './ClientThemeProvider';
 import StyledComponentsRegistry from '../lib/registry';
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import ThemeMetaTags from './components/ThemeMetaTags';
+import CustomCursor from './components/CustomCursor';
 
 const jetbrainsMono = JetBrains_Mono({
     subsets: ['latin'],
@@ -75,20 +77,20 @@ export const metadata: Metadata = {
     authors: [{ name: "Evan Jaquez" }],
     creator: "Evan Jaquez",
     publisher: "Evan Jaquez",
-    metadataBase: new URL('https://jaquevan.com'),
+    metadataBase: new URL(SITE_URL),
     alternates: {
         canonical: '/',
     },
     openGraph: {
         type: "website",
         locale: "en_US",
-        url: "https://jaquevan.com",
+        url: SITE_URL,
         title: "Evan Jaquez | UX Researcher & Designer",
         description: "Portfolio of Evan Jaquez — incoming UX Research Intern at Red Hat, CS & Economics student at Boston University. UX design, frontend development, and civic technology. Projects: La Colaborativa, Boston Voter, MAPLE.",
         siteName: "Evan Jaquez Portfolio",
         images: [
             {
-                url: '/snare_close.png',
+                url: defaultOgImagePath,
                 width: 1200,
                 height: 630,
                 alt: 'Evan Jaquez - Software Engineer & UX Researcher/Designer',
@@ -99,7 +101,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Evan Jaquez — UX Researcher & Designer, Red Hat Intern",
         description: "Portfolio of Evan Jaquez — incoming UX Research Intern at Red Hat, CS & Econ student at BU. UX design, frontend dev, civic tech.",
-        images: ['/snare_close.png'],
+        images: [defaultOgImagePath],
     },
     robots: {
         index: true,
@@ -127,7 +129,7 @@ export default function RootLayout({
         "@type": "Person",
         "name": "Evan Jaquez",
         "alternateName": ["Evan J", "Evan Jacques", "Evan Jacquez"],
-        "url": "https://jaquevan.com",
+        "url": SITE_URL,
         "jobTitle": ["UX Researcher", "UX Designer", "Frontend Developer"],
         "worksFor": [
             {
@@ -178,7 +180,7 @@ export default function RootLayout({
         ],
         "mainEntityOfPage": {
             "@type": "ProfilePage",
-            "@id": "https://jaquevan.com"
+            "@id": SITE_URL
         }
     };
 
@@ -197,6 +199,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>
             <ClientThemeProvider>
                 <ThemeMetaTags />
+                <CustomCursor />
                 {children}
             </ClientThemeProvider>
         </StyledComponentsRegistry>

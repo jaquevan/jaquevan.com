@@ -6,7 +6,7 @@ import projects from "../components/Projects/projects";
 import styled from "styled-components";
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -19,12 +19,6 @@ import WordWyrmImage from '@/public/WW-thumb.png';
 
 /* ─── Nav ─── */
 
-const NavWrapper = styled.div`
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-`;
 
 /* ─── Page shell ─── */
 
@@ -71,8 +65,8 @@ const SidePanel = styled.aside`
 `;
 
 const SideTitle = styled.h1`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
@@ -80,8 +74,8 @@ const SideTitle = styled.h1`
 `;
 
 const SideLabel = styled.p`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--text-secondary);
@@ -89,9 +83,9 @@ const SideLabel = styled.p`
 `;
 
 const SideMeta = styled.p`
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.8rem;
-    line-height: 1.6;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: var(--lh-normal);
     color: var(--text-secondary);
     margin: 0.5rem 0 0;
 `;
@@ -155,23 +149,23 @@ const CaseRow = styled.div`
 `;
 
 const CaseTitle = styled.span`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.88rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
     font-weight: 700;
     color: var(--text-primary);
 `;
 
 const CaseYear = styled.span`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
     color: var(--text-secondary);
     flex-shrink: 0;
 `;
 
 const CaseSummary = styled.p`
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.8rem;
-    line-height: 1.5;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: var(--lh-snug);
     color: var(--text-secondary);
     margin: 0;
 `;
@@ -191,8 +185,8 @@ const CaseTags = styled.div`
 `;
 
 const CaseTag = styled.span`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.64rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
     padding: 0.15rem 0.45rem;
     border-radius: 3px;
     border: 1px solid var(--border);
@@ -200,8 +194,8 @@ const CaseTag = styled.span`
 `;
 
 const CaseArrow = styled.span`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
     color: var(--text-secondary);
     flex-shrink: 0;
     transition: transform 0.2s ease;
@@ -215,20 +209,11 @@ const FrontendHeader = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
     font-weight: 700;
     color: var(--text-primary);
     margin: 0 0 0.3rem;
-`;
-
-const SectionSub = styled.p`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-secondary);
-    margin: 0;
 `;
 
 const FrontendGrid = styled.div`
@@ -273,8 +258,8 @@ const FrontendImageWrap = styled.div<{ $hasImage: boolean }>`
 `;
 
 const PlaceholderText = styled.span`
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.7);
 `;
 
@@ -286,9 +271,9 @@ const WinnerBadge = styled.span`
     color: var(--text-primary);
     padding: 3px 8px;
     border-radius: 4px;
-    font-size: 0.62rem;
+    font-size: var(--text-2xs);
     font-weight: 600;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     z-index: 2;
     border: 1px solid var(--border);
     text-transform: uppercase;
@@ -307,18 +292,18 @@ const FrontendTitle = styled.h3`
     margin: 0;
     font-weight: 600;
     color: var(--text-primary);
-    font-size: 0.88rem;
-    font-family: 'JetBrains Mono', monospace;
-    line-height: 1.3;
+    font-size: var(--text-sm);
+    font-family: var(--font-mono);
+    line-height: var(--lh-tight);
 `;
 
 const FrontendDesc = styled.p`
     margin: 0;
     color: var(--text-secondary);
-    line-height: 1.55;
-    font-size: 0.8rem;
+    line-height: var(--lh-snug);
+    font-size: var(--text-sm);
     flex-grow: 1;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-sans);
 `;
 
 const LinkRow = styled.div`
@@ -333,8 +318,8 @@ const LinkBtn = styled.a<{ $primary?: boolean }>`
     align-items: center;
     padding: 4px 10px;
     border-radius: 5px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
     font-weight: 500;
     text-decoration: none;
     transition: all 0.15s ease;
@@ -349,7 +334,76 @@ const LinkBtn = styled.a<{ $primary?: boolean }>`
     }
 `;
 
+/* ─── Graphic Design gallery ─── */
+
+const GDColumns = styled.div`
+    columns: 4;
+    column-gap: 0.45rem;
+
+    @media (max-width: 1024px) { columns: 3; }
+    @media (max-width: 640px)  { columns: 2; }
+    @media (max-width: 380px)  { columns: 1; }
+`;
+
+const GDItem = styled.div`
+    break-inside: avoid;
+    margin-bottom: 0.45rem;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: zoom-in;
+    background: var(--border);
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.04);
+    }
+`;
+
+const Overlay = styled.div<{ $open: boolean }>`
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 2000;
+    display: ${p => p.$open ? 'flex' : 'none'};
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 2rem;
+`;
+
+const OverlayImg = styled.img`
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+`;
+
 /* ─── Data ─── */
+
+/*
+ * Order matters — related pieces sit next to each other in the masonry.
+ * Add a new path here when you drop an image into /public/gd/.
+ */
+const gdImages: string[] = [
+    '/gd/CD-Design_copy.png',
+    '/gd/cd-picture.jpg',
+    '/gd/Billboard.png',
+    '/gd/qr.png',
+    '/gd/fleaslogo.jpg',
+    '/gd/projection1.png',
+    '/gd/projection2.png',
+    '/gd/future.png',
+    '/gd/Page1.jpg',
+    '/gd/PersonalPattern.png',
+];
 
 const caseStudies = [
     {
@@ -392,6 +446,7 @@ const caseStudies = [
 
 export default function Projects() {
     const frontendCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
     useEffect(() => {
         frontendCardRefs.current.forEach((card) => {
@@ -411,7 +466,7 @@ export default function Projects() {
 
     return (
         <>
-            <NavWrapper><NavBar /></NavWrapper>
+            <NavBar />
             <Container maxWidth="lg">
                 <Page>
 
@@ -510,8 +565,29 @@ export default function Projects() {
                         ))}
                     </FrontendGrid>
 
+                    <Divider />
+
+                    {/* ── Graphic Design ── */}
+                    <FrontendHeader>
+                        <SectionTitle>Graphic Design</SectionTitle>
+                    </FrontendHeader>
+
+                    <GDColumns>
+                        {gdImages.map((src) => (
+                            <GDItem key={src} onClick={() => setLightboxSrc(src)}>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={src} alt="" loading="lazy" />
+                            </GDItem>
+                        ))}
+                    </GDColumns>
+
                 </Page>
             </Container>
+
+            {/* Lightbox */}
+            <Overlay $open={lightboxSrc !== null} onClick={() => setLightboxSrc(null)}>
+                {lightboxSrc && <OverlayImg src={lightboxSrc} alt="" />}
+            </Overlay>
         </>
     );
 }

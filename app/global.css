@@ -15,15 +15,21 @@
                  'Helvetica Neue', Arial, sans-serif;
 
     /* ── Type scale ── */
-    --text-2xs:  0.68rem;                          /* labels, eyebrows       */
-    --text-xs:   0.75rem;                          /* tags, badges           */
-    --text-sm:   0.875rem;                         /* body (compact)         */
+    --text-2xs:  0.68rem;                          /* tiny labels, tiny tags */
+    --text-xs:   0.75rem;                          /* tags, dates, meta      */
+    --text-sm:   0.875rem;                         /* body (compact), cards  */
     --text-base: 0.95rem;                          /* body (standard), nav   */
     --text-lg:   1.1rem;                           /* subheadings            */
     --text-xl:   1.5rem;                           /* section labels (large) */
     --text-2xl:  2rem;                             /* section headings       */
     --text-3xl:  clamp(1.8rem, 3vw, 2.2rem);      /* page titles            */
     --text-hero: clamp(2.5rem, 6vw, 4rem);        /* hero text              */
+
+    /* ── Line heights ── */
+    --lh-tight:   1.25;   /* headings */
+    --lh-snug:    1.45;   /* subheadings, compact */
+    --lh-normal:  1.6;    /* body text */
+    --lh-relaxed: 1.75;   /* long-form paragraphs */
 }
 
 [data-theme='dark'] {
@@ -45,8 +51,8 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    cursor: url('/cursor.svg') 16 16, auto;
 }
+
 html {
     width: 100%;
     height: 100%;
@@ -121,12 +127,3 @@ html {
     scrollbar-color: #1abc9c #ecf0f1;
 }
 
-/* Custom cursor styles */
-a, button, input[type="submit"], input[type="button"],
-[role="button"], .clickable {
-    cursor: url('/cursor.svg') 16 16, pointer;
-}
-
-input, textarea, select {
-    cursor: url('/cursor.svg') 16 16, text;
-}

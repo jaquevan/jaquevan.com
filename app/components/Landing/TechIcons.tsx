@@ -1,5 +1,5 @@
 "use client";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Image from "next/image";
 
 const TechContainer = styled.div`

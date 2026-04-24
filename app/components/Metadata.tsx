@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
+import { SITE_URL, defaultOgImagePath } from '@/app/utils/site';
 
 export interface SEOProps {
     title: string;
@@ -18,8 +19,11 @@ interface MetadataProps {
 
 export default function Metadata({ seo }: MetadataProps) {
     const pathname = usePathname();
-    const canonicalUrl = seo.canonical || `https://evanjaquez.com${pathname}`;
-    const ogImageUrl = seo.ogImage || '/og-image.jpg';
+    const canonicalUrl = seo.canonical || `${SITE_URL}${pathname === '/' ? '' : pathname}`;
+    const ogPath = seo.ogImage || defaultOgImagePath;
+    const ogImageUrl = ogPath.startsWith('http')
+        ? ogPath
+        : `${SITE_URL}${ogPath.startsWith('/') ? ogPath : `/${ogPath}`}`;
 
     return (
         <>

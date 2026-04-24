@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next'
+import { SITE_URL } from '@/app/utils/site'
 
 export const dynamic = "force-static"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://jaquevan.com'
+    const baseUrl = SITE_URL
     const currentDate = new Date()
 
     return [
@@ -30,6 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: currentDate,
             changeFrequency: 'monthly',
             priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/pm/bu-spark`,
+            lastModified: currentDate,
+            changeFrequency: 'monthly',
+            priority: 0.75,
         },
         {
             url: `${baseUrl}/contact`,

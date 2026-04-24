@@ -1,6 +1,4 @@
 import { generatePageSEO } from './seo';
-// import projects from '@/app/components/Projects/projects';
-// import { Project } from '@/app/components/Projects/ProjectCard';
 
 export const homeSEO = generatePageSEO({
     title: "Evan Jaquez",

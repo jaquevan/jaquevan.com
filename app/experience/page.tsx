@@ -256,7 +256,6 @@ export default function ExperiencePage() {
                             <Role>UX Research Intern</Role>
                             <Location>Raleigh, NC</Location>
                             <Tags>
-                                <Tag><TechIcon name="figma" />Figma</Tag>
                                 <Tag>UX Research</Tag>
                             </Tags>
                         </Entry>
@@ -287,6 +286,10 @@ export default function ExperiencePage() {
                             </EntryHeader>
                             <Role>Teaching Assistant — XC475</Role>
                             <Location>Boston, MA · On-site</Location>
+                            <BulletList>
+                                <li>Support students in XC475 during office hours, providing guidance on React, TypeScript, and UI/UX design principles</li>
+                                <li>Review and give feedback on student projects and assignments, focusing on frontend implementation and design quality</li>
+                            </BulletList>
                             <Tags>
                                 <Tag><TechIcon name="react" />React</Tag>
                                 <Tag><TechIcon name="ts" />TypeScript</Tag>

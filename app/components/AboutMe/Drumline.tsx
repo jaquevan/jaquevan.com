@@ -228,7 +228,7 @@ export default function Drumline() {
                 </Chips>
 
                 <Description>
-                    No prior drumming experience before college &mdash; I worked my way onto
+                    No prior drumming experience before college. I worked my way onto
                     snare line from scratch. Switching instruments at a competitive level
                     is one of my proudest achievements, and it&apos;s taught me more about
                     discipline and teamwork than almost anything else.

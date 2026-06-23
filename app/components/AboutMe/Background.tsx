@@ -90,7 +90,7 @@ export default function Background() {
             <Row>
                 <RowLabel>Heritage</RowLabel>
                 <RowContent>
-                    Dominican-American. My family is from the Dominican Republic — that culture
+                    Dominican-American. My family is from the Dominican Republic. That culture
                     and community have shaped how I think about design, people, and what technology
                     should be built for.
                 </RowContent>
@@ -100,7 +100,7 @@ export default function Background() {
                 <RowLabel>First Gen</RowLabel>
                 <RowContent $emphasis>
                     I will be the first person in my family to graduate college. I don&apos;t take
-                    that lightly — every opportunity I have is a reflection of the sacrifices my
+                    that lightly. Every opportunity I have is a reflection of the sacrifices my
                     family has made.
                 </RowContent>
             </Row>

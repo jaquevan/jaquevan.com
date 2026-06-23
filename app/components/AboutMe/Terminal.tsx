@@ -148,7 +148,7 @@ export default function Terminal() {
             " evan jaquez\n" +
             " cs + economics, boston university ('26)\n" +
             " ux researcher & frontend dev\n" +
-            " incoming ux research intern @ red hat  —  summer '26\n",
+            " incoming ux research intern @ red hat, summer '26\n",
 
         education: () =>
             " boston university  2023–2026\n" +
@@ -367,7 +367,7 @@ export default function Terminal() {
     return (
         <TerminalContainer $theme={currentTheme} onClick={handleContainerClick}>
             <TerminalHeader>
-                <HeaderTitle $left>evan@portfolio — zsh</HeaderTitle>
+                <HeaderTitle $left>evan@portfolio: zsh</HeaderTitle>
 
                 <HeaderActions>
                     {showCopied
